@@ -1,0 +1,25 @@
+.row
+  .medium-8.columns
+    h2.text-center
+      = title("Posts")
+
+    - unless posts.present?
+      | There are no posts yet
+
+    - if params[:my_posts] == "true" && !@user.posts.present?
+      | You don't have your own posts
+
+    - posts.each do |post|
+      - unless params[:my_posts] == "true" && !policy(post).manage?
+        h3 = link_to(post.title, post)
+        = truncate(post.body, length: 500, separator: " ")
+
+    .paginator
+      = paginate(posts)
+  .medium-3.medium-offset-1.columns
+    h3
+      | Anything else?
+    - if params[:my_posts] == "true"
+      = link_to "All posts", posts_path(my_posts: false)
+    - else
+      = link_to "My posts", posts_path(my_posts: true)

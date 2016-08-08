@@ -36,7 +36,7 @@ gem "memory_profiler"
 gem "puma"
 gem "pundit"
 gem "rack-canonical-host"
-gem "rack-mini-profiler", require: false
+gem "rack-mini-profiler", ">= 0.10.1", require: false
 gem "responders"
 gem "rollbar"
 gem "seedbank"

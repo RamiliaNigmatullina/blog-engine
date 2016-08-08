@@ -1,0 +1,18 @@
+- if post.comments.present?
+  h3
+    | Comments
+  table.table-width-100.white-borders.background-color-white
+    - post.comments.each do |comment|
+      tr
+        td
+          strong
+            = comment.user.full_name
+            | :
+      tr
+        td
+          = comment.body
+        - if policy(comment).manage?
+          td
+            .text-right
+              = link_to "delete", [comment.post, comment],
+                         method: :delete

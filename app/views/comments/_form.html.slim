@@ -1,0 +1,7 @@
+.scaffold-form
+  = form_for([post, post.comments.build]) do |f|
+    .form-inputs
+      = f.text_area :body
+
+    .form-actions
+      = f.button :submit

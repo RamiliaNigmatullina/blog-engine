@@ -4,6 +4,13 @@
       .well.post.form-horizontal
         h2 = post.title
         = post.body
+        br
+        br
+        b
+          | Author:
+        = post.user.full_name
+        - if !policy(post).manage? && !@sub_exists
+          = link_to "Subscribe", { controller: "subscriptions", action: "create", blog_id: post.user_id, post_id: post.id }, { method: post }
 
     .form-actions
       - if policy(post).manage?

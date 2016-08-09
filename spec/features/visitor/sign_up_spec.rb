@@ -10,16 +10,14 @@ feature "Sign Up" do
     fill_form(:user, user_attributes)
     click_button "Sign up"
 
-    # open_email(registered_user.email)
+    open_email(registered_user.email)
 
-    # expect(current_email).to have_subject("Confirmation instructions")
-    # expect(current_email).to have_body_text(registered_user.full_name)
+    expect(current_email).to have_subject("Confirmation instructions")
+    expect(current_email).to have_body_text(registered_user.full_name)
 
-    # visit_in_email("Confirm my account")
+    visit_in_email("Confirm my account")
 
-    # expect(page).to have_content("Your email address has been successfully confirmed")
-    # expect(page).to have_text(registered_user.email)
-
-    expect(page).to have_text("Welcome! You have signed up successfully.")
+    expect(page).to have_content("Your email address has been successfully confirmed")
+    expect(page).to have_text(registered_user.email)
   end
 end

@@ -4,8 +4,13 @@ class PostsController < ApplicationController
   expose(:post, attributes: :post_params)
   expose(:posts) { Post.page(params[:page]) }
 
+  def show
+    @sub_exists = Subscription.where(blog_id: post.user_id, user_id: current_user.id).exists?
+  end
+
   def index
     @user = current_user
+    @subscriptions = Subscription.all
   end
 
   def create

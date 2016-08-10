@@ -9,7 +9,9 @@ class SubscriptionsController < ApplicationController
     subscription.blog_id = params[:blog_id]
     user = User.find(params[:blog_id])
     flash[:notice] = "You subscribed to #{user.full_name}'s blog successfully." if subscription.save
-    redirect_to(post_path(params[:post_id]))
+    redirect_to(posts_path)
+    # redirect_to(post_path(params[:post_id]))
+    # redirect_to session.delete(:return_to)
   end
 
   def update
@@ -19,7 +21,9 @@ class SubscriptionsController < ApplicationController
 
   def destroy
     subscription.destroy
-    respond_with(subscription)
+    redirect_to(posts_path)
+    # respond_with(subscription)
+    # redirect_to session.delete(:return_to)
   end
 
   private

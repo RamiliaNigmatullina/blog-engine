@@ -11,6 +11,8 @@ class PostsController < ApplicationController
   def index
     @user = current_user
     @subscriptions = Subscription.all
+    @subscription = Subscription.where(blog_id: params[:blog_id], user_id: current_user.id).first
+    @all_blogs = Post.select(:user_id).map(&:user_id).uniq
   end
 
   def create

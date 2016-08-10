@@ -10,6 +10,7 @@
           | Author:
         = post.user.full_name
         - if !policy(post).manage? && !@sub_exists
+          - session[:return_to] = request.referer
           = link_to "Subscribe", { controller: "subscriptions", action: "create", blog_id: post.user_id, post_id: post.id }, { method: post }
 
     .form-actions

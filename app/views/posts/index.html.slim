@@ -23,10 +23,10 @@
       - if params[:blog_id].present?
         - if post.user_id == params[:blog_id].to_i
           h3 = link_to(post.title, post)
-          = truncate(post.body, length: 500, separator: " ")
+          = truncate(post.body.html_safe, length: 500, separator: " ")
       - else
         h3 = link_to(post.title, post)
-        = truncate(post.body, length: 500, separator: " ")
+        = truncate(post.body.html_safe, length: 500, separator: " ")
 
     .paginator
       = paginate(posts)

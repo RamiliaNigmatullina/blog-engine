@@ -3,7 +3,7 @@
     .show-item
       .well.post.form-horizontal
         h2 = post.title
-        = post.body
+        = post.body.html_safe
         br
         br
         b

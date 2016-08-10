@@ -16,6 +16,8 @@ html class="no-js" lang="en"
 
     = javascript_tag "window.App = {}"
 
+    = javascript_include_tag Ckeditor.cdn_url
+
     == analytics_init if GA.tracker
 
   body

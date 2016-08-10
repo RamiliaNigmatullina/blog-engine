@@ -2,7 +2,7 @@
   = simple_form_for(post) do |f|
     .form-inputs
       = f.input :title, autofocus: true
-      = f.input :body
+      = f.cktext_area :body, cols: 40, ckeditor: { uiColor: "#e6e6e6", toolbar: "mini" }
 
     .form-actions
       = f.button :submit

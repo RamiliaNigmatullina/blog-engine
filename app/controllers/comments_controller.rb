@@ -1,21 +1,21 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
 
+  expose :post, finder_parameter: :post_id
+  expose :comment, ancestor: :post
+
   respond_to :html
 
   def create
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.create(comment_params)
-    @comment.user_id = current_user.id
-    flash[:notice] = "Comment was successfully created." if @comment.save
-    redirect_to post_path(@post)
+    comment.user = current_user
+    comment.save
+
+    respond_with post
   end
 
   def destroy
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.find(params[:id])
-    flash[:notice] = "Comment was successfully deleted." if @comment.destroy
-    redirect_to post_path(@post)
+    comment.destroy
+    redirect_to post
   end
 
   private

@@ -3,6 +3,8 @@
     .show-item
       .well.post.form-horizontal
         h2 = post.title
+        - if post.photo.url.present?
+          = image_tag(post.photo.url)
         = post.body.html_safe
         br
         br

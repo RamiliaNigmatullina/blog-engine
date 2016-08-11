@@ -10,7 +10,7 @@
       h4.text-center
         = User.find(params[:blog_id]).full_name
         | 's posts
-      - unless policy(post).manage?
+      - unless params[:blog_id].to_i == current_user.id
         - if @subscription.present?
           - session[:return_to] = request.referer
           = link_to "Unsubscribe", { controller: "subscriptions", action: "destroy", id: @subscription.id }, { method: "delete" }

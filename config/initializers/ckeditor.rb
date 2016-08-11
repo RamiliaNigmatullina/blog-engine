@@ -9,7 +9,7 @@ Ckeditor.setup do |config|
   # Allowed image file types for upload.
   # Set to nil or [] (empty array) for all file types
   # By default: %w(jpg jpeg png gif tiff)
-  # config.image_file_types = %w(jpg jpeg png gif tiff)
+  config.image_file_types = %w(jpg jpeg png gif tiff)
 
   # Allowed flash file types for upload.
   # Set to nil or [] (empty array) for all file types
@@ -30,7 +30,7 @@ Ckeditor.setup do |config|
   # config.parent_controller = 'MyController'
 
   # Asset model classes
-  # config.picture_model { Ckeditor::Picture }
+  config.picture_model { Ckeditor::Picture }
   # config.attachment_file_model { Ckeditor::AttachmentFile }
 
   # Paginate assets
@@ -44,12 +44,12 @@ Ckeditor.setup do |config|
   # To reduce the asset precompilation time, you can limit plugins and/or languages to those you need:
   # By default: nil (no limit)
   # config.assets_languages = ['en', 'uk']
-  # config.assets_plugins = ['image', 'smiley']
+  config.assets_plugins = ['image', 'smiley']
 
   # CKEditor CDN
   # More info here http://cdn.ckeditor.com/
   # By default: nil (CDN disabled)
-  config.cdn_url = "//cdn.ckeditor.com/4.5.6/standard/ckeditor.js"
+  config.cdn_url = "//cdn.ckeditor.com/4.5.10/standard/ckeditor.js"
 
   # JS config url
   # Used when CKEditor CDN enabled

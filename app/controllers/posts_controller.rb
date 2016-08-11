@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   expose(:post, attributes: :post_params)
   expose(:posts) { Post.page(params[:page]) }
-
+  
   def show
     @sub_exists = Subscription.where(blog_id: post.user_id, user_id: current_user.id).exists?
   end
@@ -13,8 +13,8 @@ class PostsController < ApplicationController
     @subscriptions = Subscription.all
     @subscription = Subscription.where(blog_id: params[:blog_id], user_id: current_user.id).first
     @all_blogs = Post.select(:user_id).map(&:user_id).uniq
-  end
-
+   end
+  
   def create
     post.user_id = current_user.id
     flash[:notice] = "Post was successfully created." if post.save
@@ -34,6 +34,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :photo, :photo_cache)
   end
 end

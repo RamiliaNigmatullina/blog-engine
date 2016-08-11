@@ -3,27 +3,27 @@ class PostsController < ApplicationController
 
   expose(:post, attributes: :post_params)
   expose(:posts) { Post.page(params[:page]) }
-  
+
   def show
-    @sub_exists = Subscription.where(blog_id: post.user_id, user_id: current_user.id).exists?
+    @sub_exists = current_user.subscriptions.where(blog_id: post.user_id).exists?
   end
 
   def index
-    @user = current_user
-    @subscriptions = Subscription.all
-    @subscription = Subscription.where(blog_id: params[:blog_id], user_id: current_user.id).first
-    @all_blogs = Post.select(:user_id).map(&:user_id).uniq
-   end
-  
+    @subscription = current_user.subscriptions.find_by(blog_id: params[:blog_id])
+    @all_blogs = Post.select(:user_id).map(&:user_id).uniq # add counter cache
+  end
+
   def create
-    post.user_id = current_user.id
-    flash[:notice] = "Post was successfully created." if post.save
-    respond_with(post)
+    post.user = current_user
+    post.save
+
+    respond_with post
   end
 
   def update
-    flash[:notice] = "Post was successfully updated." if post.save
-    respond_with(post)
+    post.save
+
+    respond_with post
   end
 
   def destroy
@@ -34,6 +34,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :photo, :photo_cache)
+    params.require(:post).permit(:title, :body)
   end
 end

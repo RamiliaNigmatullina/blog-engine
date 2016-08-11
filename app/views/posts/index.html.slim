@@ -3,7 +3,7 @@
     h2.text-center
       = title("Posts")
 
-    - unless posts.present?
+    - if posts.empty?
       | There are no posts yet
 
     - if params[:blog_id].present?
@@ -13,10 +13,10 @@
       - unless params[:blog_id].to_i == current_user.id
         - if @subscription.present?
           - session[:return_to] = request.referer
-          = link_to "Unsubscribe", { controller: "subscriptions", action: "destroy", id: @subscription.id }, { method: "delete" }
+          = link_to "Unsubscribe", subscription, { method: "delete" }
         - else
           - session[:return_to] = request.referer
-          = link_to "Subscribe", { controller: "subscriptions", action: "create", blog_id: params[:blog_id], post_id: post.id }, { method: post }
+          = link_to "Subscribe", subscriptions(blog_id: params[:blog_id], post_id: post.id), method: post
           - session.delete(:return_to)
 
     - posts.each do |post|

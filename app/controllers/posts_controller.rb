@@ -3,7 +3,8 @@ class PostsController < ApplicationController
 
   respond_to :html
 
-  expose(:post, attributes: :post_params)
+  expose :blog
+  expose :post, attributes: :post_params, from: :blog
   expose(:posts) { Post.page(params[:page]) }
 
   def show

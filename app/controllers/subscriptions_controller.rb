@@ -1,29 +1,18 @@
 class SubscriptionsController < ApplicationController
-
-  expose :subscription, attributes: subscription_params
+  expose :post
+  expose :subscription
 
   def create
     subscription.user = current_user
+    subscription.blog_id = post.blog_id
 
     subscription.save
-    redirect_to posts_path
-  end
-
-  def update
-    subscription.save
-
-    respond_with subscription
+    respond_with post
   end
 
   def destroy
     subscription.destroy
 
-    redirect_to posts_path
-  end
-
-  private
-
-  def subscription_params
-    params.require(:subscription).permit(:blog_id, :user_id)
+    respond_with post
   end
 end

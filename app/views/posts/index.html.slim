@@ -8,20 +8,16 @@
 
     - if params[:blog_id].present?
       h4.text-center
-        = User.find(params[:blog_id]).full_name
-        | 's posts
-      - unless params[:blog_id].to_i == current_user.id
+      - unless params[:blog_id].to_i == current_user.blog_id
         - if @subscription.present?
-          - session[:return_to] = request.referer
           = link_to "Unsubscribe", subscription, { method: "delete" }
         - else
-          - session[:return_to] = request.referer
-          = link_to "Subscribe", subscriptions(blog_id: params[:blog_id], post_id: post.id), method: post
+          = link_to "Subscribe", subscriptions_path(blog_id: params[:blog_id], post_id: post.id), method: post
           - session.delete(:return_to)
 
     - posts.each do |post|
       - if params[:blog_id].present?
-        - if post.user_id == params[:blog_id].to_i
+        - if post.blog_id == params[:blog_id].to_i
           h3 = link_to(post.title, post)
           = truncate(post.body.html_safe, length: 500, separator: " ")
       - else
@@ -30,27 +26,20 @@
 
     .paginator
       = paginate(posts)
-  .medium-3.medium-offset-1.columns
-    h3
-      | Anything else?
+  
+  - if posts.exists?
+    .medium-3.medium-offset-1.columns
+      h3
+        | Anything else?
+      = link_to "All posts", posts_path
+      - if @current_user.posts.exists?
+        br
+        = link_to "My posts", posts_path(blog_id: current_user.id)
 
-    = link_to "My posts", posts_path(blog_id: current_user.id)
-    br
-    = link_to "All posts", posts_path
-
-    h3
-      = title("My subscriptions")
-
-    ul
-      - @subscriptions.each do |subscription|
-        - if subscription.user_id == current_user.id
-          li
-            = link_to User.find(subscription.blog_id).full_name, posts_path(blog_id: subscription.blog_id)
-
-    h3
-      = title("All blogs")
-
-    ul
-      - @all_blogs.each do |blog|
-        li
-          = link_to User.find(blog).full_name, posts_path(blog_id: blog)
+      - if @subscriptions.exists?
+        h3
+          = title("My subscriptions")
+        ul
+          - @subscriptions.each do |subscription|
+            li
+              = link_to subscription.blog.user.full_name, posts_path(blog_id: subscription.blog_id)

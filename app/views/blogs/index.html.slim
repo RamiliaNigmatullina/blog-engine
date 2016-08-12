@@ -1,0 +1,27 @@
+table.table.table-striped
+  thead
+    tr
+        th Actions
+
+  - blogs.each do |blog|
+    tr
+      td.actions
+        = link_to(blog, class: 'btn') do
+          i.fi-eye
+          |  Show
+        = link_to(edit_blog_path(blog), class: 'btn') do
+          i.fi-pencil
+          |  Edit
+        = link_to(blog, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }) do
+          i.fi-trash
+          |  Delete
+
+.paginator
+  = paginate(blogs)
+
+br
+= link_to new_blog_path, class: 'btn btn-primary' do
+  i.fi-plus
+  |  New Blog
+
+

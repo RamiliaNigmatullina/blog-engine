@@ -1,13 +1,14 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
 
-  expose :post, finder_parameter: :post_id
-  expose :comment, ancestor: :post
+  expose :post
+  expose :comment, attributes: :comment_params, from: :post
 
   respond_to :html
 
   def create
     comment.user = current_user
+    comment.post_id = post.id
     comment.save
 
     respond_with post
@@ -15,7 +16,7 @@ class CommentsController < ApplicationController
 
   def destroy
     comment.destroy
-    redirect_to post
+    respond_with post
   end
 
   private

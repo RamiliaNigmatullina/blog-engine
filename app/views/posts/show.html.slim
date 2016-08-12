@@ -6,17 +6,15 @@
         - if post.photo.url.present?
           = image_tag(post.photo.url)
         = post.body.html_safe
-        br
-        br
         b
           | Author:
-        = post.user.full_name
-        - if !policy(post).manage? && !@sub_exists
-          - session[:return_to] = request.referer
-          = link_to "Subscribe", { controller: "subscriptions", action: "create", blog_id: post.user_id, post_id: post.id }, { method: post }
+        = post.blog.user.full_name
+        - if !policy(post.blog).manage? && !@sub_exists
+          = link_to "Subscribe", { controller: "subscriptions", action: "create", blog_id: params[:blog_id], post_id: post.id }, { method: post }
+        br
 
     .form-actions
-      - if policy(post).manage?
+      - if policy(post.blog).manage?
         = link_to(edit_post_path(post), class: "btn") do
           i.fi-pencil
           |  Edit

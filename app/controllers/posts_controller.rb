@@ -1,20 +1,29 @@
 class PostsController < ApplicationController
+  before_filter :authenticate_user!
+
   respond_to :html
 
   expose(:post, attributes: :post_params)
   expose(:posts) { Post.page(params[:page]) }
 
   def show
-    @sub_exists = current_user.subscriptions.where(blog_id: post.user_id).exists?
+    @sub_exists = current_user.subscriptions.where(blog_id: post.blog_id).exists?
   end
 
   def index
-    @subscription = current_user.subscriptions.find_by(blog_id: params[:blog_id])
-    @all_blogs = Post.select(:user_id).map(&:user_id).uniq # add counter cache
+    @subscriptions = current_user.subscriptions
   end
 
   def create
-    post.user = current_user
+    blog = Blog.find_by user_id: current_user.id
+
+    if blog.nil?
+      blog = Blog.new(user_id: current_user.id)
+      blog.save
+    end
+
+    post.blog_id = blog.id
+    post.user_id = current_user.id
     post.save
 
     respond_with post
@@ -28,7 +37,8 @@ class PostsController < ApplicationController
 
   def destroy
     post.destroy
-    respond_with(post)
+
+    respond_with post
   end
 
   private

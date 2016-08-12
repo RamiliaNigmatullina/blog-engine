@@ -3,6 +3,7 @@ class User
     USER_PARAMS = %i(
       full_name
       email
+      username
       password
       password_confirmation
     ).freeze

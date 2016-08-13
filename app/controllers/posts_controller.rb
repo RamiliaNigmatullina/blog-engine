@@ -1,14 +1,13 @@
 class PostsController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   respond_to :html
 
-  expose :blog
-  expose :post, attributes: :post_params, from: :blog
+  expose :post, attributes: :post_params
   expose(:posts) { Post.page(params[:page]) }
 
   def show
-    @sub_exists = current_user.subscriptions.where(blog_id: post.blog_id).exists?
+    @subscription = Subscription.find_by blog_id: post.blog.id, user_id: current_user.id
   end
 
   def index

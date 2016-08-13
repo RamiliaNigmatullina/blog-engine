@@ -1,0 +1,29 @@
+.row
+  .medium-8.columns
+    h2
+      = blog.user.full_name
+      | 's posts
+      - blog.posts.each do |post|
+        h4 = link_to(post.title, post)
+        = truncate(post.body.html_safe, length: 500, separator: " ")
+
+  .medium-4.columns
+    h3.margin-bottom-20
+      = blog.user.full_name
+      |  (
+      = blog.user.username
+      | )
+
+    h5
+      - unless policy(blog).manage?
+        .margin-bottom-20
+          - if @subscription.nil?
+            = link_to "Subscribe", { controller: "subscriptions", action: "create", blog_id: blog.id }, { method: "post" }
+          - else
+            = link_to "Unsubcsribe", @subscription, method: "delete"
+
+      | Subscribers:
+      = blog.users.size
+      br
+      | Posts:
+      = blog.posts.size

@@ -1,18 +1,18 @@
 class SubscriptionsController < ApplicationController
-  expose :post
+  expose :blog
   expose :subscription
 
   def create
     subscription.user = current_user
-    subscription.blog_id = post.blog_id
+    subscription.blog_id = blog.id
 
     subscription.save
-    respond_with post
+    redirect_to blog
   end
 
   def destroy
     subscription.destroy
 
-    respond_with post
+    redirect_to subscription.blog
   end
 end

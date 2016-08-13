@@ -1,17 +1,12 @@
 .row
   .medium-8.columns
-    .show-item
-      .well.post.form-horizontal
-        h2 = post.title
-        - if post.photo.url.present?
-          = image_tag(post.photo.url)
-        = post.body.html_safe
-        b
-          | Author:
-        = post.blog.user.full_name
-        - if !policy(post.blog).manage? && !@sub_exists
-          = link_to "Subscribe", { controller: "subscriptions", action: "create", blog_id: params[:blog_id], post_id: post.id }, { method: post }
-        br
+    h2 = post.title
+    - if post.photo.url.present?
+      = image_tag(post.photo.url)
+    = post.body.html_safe
+    b
+      | Author:
+    = link_to post.blog.user.full_name, post.blog
 
     .form-actions
       - if policy(post.blog).manage?
@@ -25,4 +20,3 @@
       = link_to "Back", :back
 
     = render "comments/index"
-    = render "comments/new"

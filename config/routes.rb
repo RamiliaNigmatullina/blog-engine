@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :blogs
   mount Ckeditor::Engine => "/ckeditor"
   resources :subscriptions
   resources :posts do

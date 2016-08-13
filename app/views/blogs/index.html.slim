@@ -1,0 +1,15 @@
+.row
+  .medium-8.columns
+    h2.text-center
+      = title("All blogs")
+
+    - if blogs.empty?
+      | There are no blogs yet
+
+    ul
+      - blogs.each do |blog|
+        li
+          = link_to blog.user.full_name, blog
+
+    .paginator
+      = paginate(blogs)

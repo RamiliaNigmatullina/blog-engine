@@ -1,7 +1,7 @@
 .row
   .medium-8.columns
     h2.text-center
-      = title("My subscribed blogs")
+      = title("Posts")
 
     - if posts.empty?
       | There are no posts yet
@@ -11,27 +11,27 @@
       h4.text-center
       - if @current_user.posts.exists? && params[:blog_id].to_i != @current_user.posts.first.blog_id
         - if @subscription.present?
-          = link_to "Unsubscribe", subscription, { method: "delete" }
+          = link_to "Unsubscribe", subscription, method: "delete"
         - else
           = link_to "Subscribe", subscriptions_path(blog_id: params[:blog_id], post_id: post.id), method: post
-          - session.delete(:return_to)
 
     - posts.each do |post|
-      - if params[:blog_id].present?
-        - if post.blog_id == params[:blog_id].to_i
+      - if @current_user.subscriptions.where(blog_id: post.blog_id).exists? || post.user_id == current_user.id
+        - if params[:blog_id].present?
+          - if post.blog_id == params[:blog_id].to_i
+            h3 = link_to(post.title, post)
+            = truncate(post.body.html_safe, length: 500, separator: " ")
+        - else
           h3 = link_to(post.title, post)
           = truncate(post.body.html_safe, length: 500, separator: " ")
-      - else
-        h3 = link_to(post.title, post)
-        = truncate(post.body.html_safe, length: 500, separator: " ")
 
     .paginator
       = paginate(posts)
-  
+
   - if posts.exists?
     .medium-3.medium-offset-1.columns
       h3
-        |  Dashboard
+        | Dashboard
       = link_to "All posts", posts_path
       - if @current_user.posts.exists?
         br

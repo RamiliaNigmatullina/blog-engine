@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Upgrade [rails](https://github.com/rails/rails) to 4.2.7.1
 - Minor improvements in newrelick.yml
 - Update Ruby to 2.3.1
 - Update bin/setup script to clean old log files and tmp directory

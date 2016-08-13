@@ -1,14 +1,15 @@
 .row
   .medium-8.columns
     h2.text-center
-      = title("Posts")
+      = title("My subscribed blogs")
 
     - if posts.empty?
       | There are no posts yet
 
     - if params[:blog_id].present?
+
       h4.text-center
-      - unless params[:blog_id].to_i == current_user.blog_id
+      - if @current_user.posts.exists? && params[:blog_id].to_i != @current_user.posts.first.blog_id
         - if @subscription.present?
           = link_to "Unsubscribe", subscription, { method: "delete" }
         - else
@@ -30,11 +31,11 @@
   - if posts.exists?
     .medium-3.medium-offset-1.columns
       h3
-        | Anything else?
+        |  Dashboard
       = link_to "All posts", posts_path
       - if @current_user.posts.exists?
         br
-        = link_to "My posts", posts_path(blog_id: current_user.id)
+        = link_to "My posts", posts_path(blog_id: @current_user.posts.first.blog_id)
 
       - if @subscriptions.exists?
         h3

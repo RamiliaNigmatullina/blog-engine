@@ -8,4 +8,8 @@ class PostDecorator < ApplicationDecorator
   def short_body
     h.truncate object.body, length: 500
   end
+
+  def comments_count
+    "Commets (#{object.comments.length})"
+  end
 end

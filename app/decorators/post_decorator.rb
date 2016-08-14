@@ -12,4 +12,8 @@ class PostDecorator < ApplicationDecorator
   def comments_count
     "Commets (#{object.comments.length})"
   end
+
+  def subscribed?
+    current_user.object.subscribed
+  end
 end

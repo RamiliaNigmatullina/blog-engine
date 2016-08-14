@@ -3,16 +3,14 @@ class PostsController < ApplicationController
 
   respond_to :html
 
-  expose_decorated :post, attributes: :post_params
+  expose_decorated(:post, attributes: :post_params)
   expose_decorated(:posts) { Post.page(params[:page]) }
+
   expose_decorated(:comments) { post_comments }
+  expose_decorated(:subscriptions) { current_user_subscriptions }
 
   def show
     @subscription = Subscription.find_by blog_id: post.blog.id, user_id: current_user.id
-  end
-
-  def index
-    @subscriptions = current_user.subscriptions.includes(:blog)
   end
 
   def create
@@ -50,5 +48,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body)
+  end
+
+  def current_user_subscriptions
+    current_user.subscriptions.includes(:blog)
   end
 end

@@ -1,6 +1,6 @@
 class SubscriptionsController < ApplicationController
-  expose_decorated :blog
-  expose_decorated :subscription
+  expose :blog
+  expose :subscription
 
   def create
     subscription.user = current_user

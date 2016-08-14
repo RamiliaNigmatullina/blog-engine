@@ -10,7 +10,7 @@ class BlogDecorator < ApplicationDecorator
   end
 
   def user_full_name
-    "#{object.user.full_name}"
+    object.user.full_name
   end
 
   def user_full_name_with_username

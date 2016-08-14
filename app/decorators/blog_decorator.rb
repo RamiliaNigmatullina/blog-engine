@@ -1,5 +1,4 @@
 class BlogDecorator < ApplicationDecorator
-
   def subscribers_number
     "Subscribers: #{object.users.size}"
   end

@@ -11,15 +11,15 @@
         - if params[:blog_id].present?
           - if post.blog_id == params[:blog_id].to_i
             h3 = link_to(post.title, post)
-            = truncate(post.body.html_safe, length: 500, separator: " ")
+            = post.short_body
         - else
           h3 = link_to(post.title, post)
-          = truncate(post.body.html_safe, length: 500, separator: " ")
+          = post.short_body
 
     .paginator
       = paginate(posts)
 
-  - if posts.exists?
+  - unless posts.nil?
     .medium-3.medium-offset-1.columns
       h3
         | Dashboard

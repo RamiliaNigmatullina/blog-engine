@@ -3,9 +3,8 @@ class PostsController < ApplicationController
 
   respond_to :html
 
-  expose :post, attributes: :post_params
-  expose(:posts) { Post.page(params[:page]) }
-
+  expose_decorated :post, attributes: :post_params
+  expose_decorated(:posts) { Post.page(params[:page]) }
   expose_decorated(:comments) { post_comments }
 
   def show
@@ -46,7 +45,7 @@ class PostsController < ApplicationController
   private
 
   def post_comments
-    post.comments.includes(:user).order(created_at: :desc)
+    post.comments.includes(:user)
   end
 
   def post_params

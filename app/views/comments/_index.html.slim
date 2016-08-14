@@ -2,12 +2,14 @@
   h3
     | Comments
   table.table-width-100.white-borders.background-color-white
+    tr
     - comments.each do |comment|
       tr
         td
           strong
-            = comment.user.full_name
-            | :
+            = comment.commenter
+        td.text-right
+          = comment.created_at
       tr
         td
           = comment.body

@@ -5,8 +5,10 @@
       = image_tag(post.photo.url)
     = post.body.html_safe
     b
-      | Author:
+      = "Author: "
     = link_to post.blog.user.full_name, post.blog
+    br
+    = post.created_at
 
     .form-actions
       - if policy(post.blog).manage?

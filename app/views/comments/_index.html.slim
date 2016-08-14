@@ -1,8 +1,8 @@
-- if post.comments.present?
+- if comments.present?
   h3
     | Comments
   table.table-width-100.white-borders.background-color-white
-    - post.comments.each do |comment|
+    - comments.each do |comment|
       tr
         td
           strong

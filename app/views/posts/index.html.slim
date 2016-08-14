@@ -6,15 +6,6 @@
     - if posts.empty?
       | There are no posts yet
 
-    - if params[:blog_id].present?
-
-      h4.text-center
-      - if @current_user.posts.exists? && params[:blog_id].to_i != @current_user.posts.first.blog_id
-        - if @subscription.present?
-          = link_to "Unsubscribe", subscription, method: "delete"
-        - else
-          = link_to "Subscribe", subscriptions_path(blog_id: params[:blog_id], post_id: post.id), method: post
-
     - posts.each do |post|
       - if @current_user.subscriptions.where(blog_id: post.blog_id).exists? || post.user_id == current_user.id
         - if params[:blog_id].present?

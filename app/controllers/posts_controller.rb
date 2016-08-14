@@ -6,12 +6,14 @@ class PostsController < ApplicationController
   expose :post, attributes: :post_params
   expose(:posts) { Post.page(params[:page]) }
 
+  expose_decorated(:comments) { post_comments }
+
   def show
     @subscription = Subscription.find_by blog_id: post.blog.id, user_id: current_user.id
   end
 
   def index
-    @subscriptions = current_user.subscriptions
+    @subscriptions = current_user.subscriptions.includes(:blog)
   end
 
   def create
@@ -42,6 +44,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def post_comments
+    post.comments.includes(:user).order(created_at: :desc)
+  end
 
   def post_params
     params.require(:post).permit(:title, :body)

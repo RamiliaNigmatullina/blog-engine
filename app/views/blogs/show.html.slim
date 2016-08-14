@@ -5,7 +5,7 @@
       | 's posts
       - blog.posts.each do |post|
         h4 = link_to(post.title, post)
-        = truncate(post.body.html_safe, length: 500, separator: " ")
+        = post.short_body
 
   .medium-4.columns
     h3.margin-bottom-20

@@ -9,7 +9,7 @@
     ul
       - blogs.each do |blog|
         li
-          = link_to blog.user.full_name, blog
+          = link_to blog.user_full_name, blog
 
     .paginator
       = paginate(blogs)

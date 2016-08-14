@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
 
   expose :post
-  expose :comment, attributes: :comment_params, from: :post
+
+  expose_decorated :comment, attributes: :comment_params, from: :post
 
   def index
   end

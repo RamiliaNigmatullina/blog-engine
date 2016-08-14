@@ -1,5 +1,5 @@
 class CommentDecorator < ApplicationDecorator
-  delegate_all
+  delegate :body, :post
 
   def created_at
     "#{object.created_at.strftime('%b %e, %Y')} at #{object.created_at.strftime('%H:%M')}"

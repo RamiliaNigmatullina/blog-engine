@@ -1,4 +1,5 @@
 class BlogDecorator < ApplicationDecorator
+  delegate :id
   def subscribers_number
     "Subscribers: #{object.users.size}"
   end

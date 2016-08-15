@@ -1,5 +1,7 @@
 class BlogDecorator < ApplicationDecorator
+  decorates_association :posts
   delegate :id
+
   def subscribers_number
     "Subscribers: #{object.users.size}"
   end
@@ -14,9 +16,5 @@ class BlogDecorator < ApplicationDecorator
 
   def user_full_name_with_username
     "#{object.user.full_name} (#{object.user.username})"
-  end
-
-  def posts
-    object.posts.decorate
   end
 end

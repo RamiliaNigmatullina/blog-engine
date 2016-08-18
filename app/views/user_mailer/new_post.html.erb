@@ -1,0 +1,16 @@
+h3
+  | Hello, 
+   = @user.full_name
+
+p
+  | User
+  = @post.user.full_name
+  | posted new article:
+
+p
+  = @post.title
+  = truncate(@post.body, length: 300, separator: " ")
+
+p
+  | Read it now
+  = link_to(@post.title, post_path(@post))

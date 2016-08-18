@@ -13,6 +13,8 @@ class CommentsController < ApplicationController
     comment.post_id = post.id
     comment.save
 
+    UserMailer.new_comment(comment).deliver_later
+
     redirect_to post
   end
 

@@ -25,6 +25,8 @@ class PostsController < ApplicationController
     post.user_id = current_user.id
     post.save
 
+    UserMailer.new_post(post).deliver_later
+
     respond_with post
   end
 

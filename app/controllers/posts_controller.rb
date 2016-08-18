@@ -53,6 +53,6 @@ class PostsController < ApplicationController
   end
 
   def current_user_subscriptions
-    current_user.subscriptions.includes(:blog)
+    current_user.subscriptions.includes(blog: [:user])
   end
 end

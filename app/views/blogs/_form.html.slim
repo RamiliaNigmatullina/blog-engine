@@ -1,0 +1,9 @@
+.scaffold-form
+  = simple_form_for(blog) do |f|
+    .form-inputs
+      = f.input :name, autofocus: true
+      = f.label "Theme"
+      = f.collection_select(:theme_id, Theme.all, :id, :name)
+
+    .form-actions
+      = f.button :submit

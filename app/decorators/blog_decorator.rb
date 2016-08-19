@@ -1,6 +1,6 @@
 class BlogDecorator < ApplicationDecorator
   decorates_association :posts
-  delegate :id
+  delegate :id, :name, :theme_id
 
   def subscribers_number
     "Subscribers: #{object.users.size}"

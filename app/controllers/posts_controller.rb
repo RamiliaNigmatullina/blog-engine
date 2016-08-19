@@ -14,15 +14,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    blog = Blog.find_by user_id: current_user.id
-
-    if blog.nil?
-      blog = Blog.new(user_id: current_user.id)
-      blog.save
-    end
-
-    post.blog_id = blog.id
-    post.user_id = current_user.id
+    post.user = current_user
     post.save
 
     UserMailer.new_post(post).deliver_later
@@ -49,7 +41,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :blog_id)
   end
 
   def current_user_subscriptions

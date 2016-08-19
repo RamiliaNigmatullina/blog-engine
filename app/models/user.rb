@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
 
   has_many :comments, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
-  has_many :blogs, through: :subscriptions
-  has_one :blog
   has_many :posts
+
+  has_many :blogs, through: :subscriptions
+  has_many :blogs
 end

@@ -1,0 +1,29 @@
+.row
+  .medium-8.columns
+    h2 = user.full_name
+    table
+      tr
+        td
+          | Birthday
+        td
+          | DATE
+      tr
+        td
+          | Country, city
+        td
+          | COUNTRY, CITY
+      tr
+        td
+          | Blogs
+        td
+          | BLOG_1 (4), BLOG_2 (2)
+      tr
+        td
+          | Posts number
+        td
+          | 6
+
+    - if current_user.id == params[:id].to_i
+      h3
+        | Create new blog
+      = render "blogs/form"

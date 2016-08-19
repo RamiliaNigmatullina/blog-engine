@@ -1,5 +1,5 @@
 .row
-  .medium-8.columns
+  .medium-6.columns
     h2 = user.full_name
     table
       tr
@@ -22,8 +22,3 @@
           | Posts number
         td
           | 6
-
-    - if current_user.id == params[:id].to_i
-      h3
-        | Create new blog
-      = render "blogs/form"

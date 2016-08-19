@@ -1,17 +1,17 @@
 .row
   .medium-8.columns
     h2
-      = blog.user_full_name
-      | 's posts
+      = blog.name
       - blog.posts.each do |post|
         h4 = link_to(post.title, post)
         = post.short_body
 
   .medium-4.columns
     h3.margin-bottom-20
-      = blog.user_full_name_with_username
+      = blog.author
 
     h5
+      = blog.theme
       - unless policy(blog).manage?
         .margin-bottom-20
           - if @subscription.nil?
@@ -21,3 +21,12 @@
       = blog.subscribers_number
       br
       = blog.posts_number
+
+      .form-actions
+        - if policy(blog).manage?
+          = link_to(edit_blog_path(blog), class: "btn") do
+            i.fi-pencil
+            |  Edit
+          = link_to(blog, method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" }) do
+            i.fi-trash
+            |  Delete

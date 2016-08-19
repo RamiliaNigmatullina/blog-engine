@@ -2,7 +2,7 @@
   = simple_form_for(post) do |f|
     .form-inputs
       = f.label "Blog"
-      = f.collection_select(:blog_id, Blog.where(user_id: current_user.id), :id, :name)
+      = f.collection_select(:blog_id, current_user.blogs, :id, :name)
       = f.input :title, autofocus: true
       = f.cktext_area :body, cols: 40, ckeditor: { uiColor: "#e6e6e6", toolbar: "mini" }
 

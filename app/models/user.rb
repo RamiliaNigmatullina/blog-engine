@@ -9,6 +9,6 @@ class User < ActiveRecord::Base
   has_many :subscriptions, dependent: :destroy
   has_many :posts
 
-  has_many :blogs, through: :subscriptions
+  has_many :subscribed_blogs, class_name: "Blog", through: :subscriptions
   has_many :blogs
 end

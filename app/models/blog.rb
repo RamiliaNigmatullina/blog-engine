@@ -8,5 +8,5 @@ class Blog < ActiveRecord::Base
   has_many :users, through: :subscriptions
   has_many :posts
 
-  has_one :theme
+  has_one :category
 end

@@ -1,4 +1,4 @@
 FactoryGirl.define do
-  factory :theme do
+  factory :category do
   end
 end

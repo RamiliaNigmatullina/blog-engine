@@ -25,6 +25,7 @@ gem "slim"
 # all other gems
 gem "carrierwave"
 gem "ckeditor"
+gem "cocoon"
 gem "decent_decoration"
 gem "decent_exposure"
 gem "devise"

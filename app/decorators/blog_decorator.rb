@@ -1,6 +1,6 @@
 class BlogDecorator < ApplicationDecorator
   decorates_association :posts
-  delegate :id, :name, :category_id
+  delegate :id, :name, :description, :category_id, :category
 
   def subscribers_number
     "Subscribers: #{object.users.size}"
@@ -18,7 +18,7 @@ class BlogDecorator < ApplicationDecorator
     "Author: #{object.user.full_name} (#{object.user.username})"
   end
 
-  def theme
+  def category
     "Category: #{object.category.name}"
   end
 end

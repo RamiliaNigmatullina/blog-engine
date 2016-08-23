@@ -2,8 +2,9 @@
   = simple_form_for(blog) do |f|
     .form-inputs
       = f.input :name, autofocus: true
+      = f.input :description
       = f.label "Сategory"
-      = f.collection_select(:categoty_id, Category.all, :id, :name)
+      = f.collection_select(:category_id, Category.all, :id, :name)
 
     .form-actions
       = f.button :submit

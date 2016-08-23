@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   respond_to :html
 
   expose_decorated(:post, attributes: :post_params)
-  expose_decorated(:posts) { Post.page(params[:page]) }
+  expose_decorated(:posts) { paginated_posts }
 
   expose_decorated(:comments) { post_comments }
   expose_decorated(:subscriptions) { current_user_subscriptions }
@@ -45,6 +45,10 @@ class PostsController < ApplicationController
   end
 
   def current_user_subscriptions
-    current_user.subscriptions.includes(blog: [:user])
+    current_user.subscriptions.includes(:blog)
+  end
+
+  def paginated_posts
+    Post.includes(:blog).page(params[:page]).per(5)
   end
 end

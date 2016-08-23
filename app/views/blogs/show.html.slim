@@ -2,6 +2,9 @@
   .medium-8.columns
     h2
       = blog.name
+    h4
+      i
+        = blog.description
       - blog.posts.each do |post|
         h4 = link_to(post.title, post)
         = post.short_body
@@ -11,7 +14,8 @@
       = blog.author
 
     h5
-      = blog.theme
+      = blog.category
+      br
       - unless policy(blog).manage?
         .margin-bottom-20
           - if @subscription.nil?

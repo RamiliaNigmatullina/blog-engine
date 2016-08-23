@@ -11,9 +11,15 @@
         - if params[:blog_id].present?
           - if post.blog_id == params[:blog_id].to_i
             h3 = link_to(post.title, post)
+            = "Blog: "
+            = link_to post.blog.name, blog_path(post.blog)
+            br
             = post.short_body
         - else
           h3 = link_to(post.title, post)
+          = "Blog: "
+          = link_to post.blog.name, blog_path(post.blog)
+          br
           = post.short_body
 
     .paginator
@@ -34,4 +40,4 @@
         ul
           - subscriptions.each do |subscription|
             li
-              = link_to subscription.blog_user_full_name, posts_path(blog_id: subscription.blog_id)
+              = link_to subscription.blog.name, posts_path(blog_id: subscription.blog_id)

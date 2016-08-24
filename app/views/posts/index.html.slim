@@ -7,7 +7,15 @@
       | There are no posts yet
 
     - posts.each do |post|
-      - if current_user.subscriptions.where(blog_id: post.blog_id).exists? || post.user_id == current_user.id
+      - if params[:q].present?
+        - post.tags.each do |tag|
+          - if tag.name == params[:q]
+            h3 = link_to(post.title, post)
+            = "Blog: "
+            = link_to post.blog.name, blog_path(post.blog)
+            br
+            = post.short_body
+      - elsif current_user.subscriptions.where(blog_id: post.blog_id).exists? || post.user_id == current_user.id
         - if params[:blog_id].present?
           - if post.blog_id == params[:blog_id].to_i
             h3 = link_to(post.title, post)

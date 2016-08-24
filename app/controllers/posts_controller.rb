@@ -41,7 +41,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body, :blog_id)
+    params.require(:post).permit(:title, :body, :blog_id, tags_attributes: %i(id post_id name _destroy))
   end
 
   def current_user_subscriptions

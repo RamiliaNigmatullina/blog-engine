@@ -4,6 +4,11 @@
     - if post.photo.url.present?
       = image_tag(post.photo.url)
     = post.body.html_safe
+    | Tags:
+    i
+      - post.tags.each do |tag|
+        = " #" + tag.name
+    br
     b
       = "Author: "
     = link_to post.blog.user.full_name, post.blog

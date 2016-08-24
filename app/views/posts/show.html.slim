@@ -8,7 +8,7 @@
       | Tags:
       i
         - post.tags.each do |tag|
-          = link_to " #" + tag.name, posts_path(q: tag.name)
+          = link_to " #" + tag.name, posts_path(search: tag.name)
     br
     b
       = "Author: "

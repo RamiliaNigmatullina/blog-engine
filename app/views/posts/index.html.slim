@@ -6,29 +6,37 @@
     - if posts.empty?
       | There are no posts yet
 
-    - posts.each do |post|
-      - if params[:q].present?
-        - post.tags.each do |tag|
-          - if tag.name == params[:q]
-            h3 = link_to(post.title, post)
-            = "Blog: "
-            = link_to post.blog.name, blog_path(post.blog)
-            br
-            = post.short_body
-      - elsif current_user.subscriptions.where(blog_id: post.blog_id).exists? || post.user_id == current_user.id
-        - if params[:blog_id].present?
-          - if post.blog_id == params[:blog_id].to_i
-            h3 = link_to(post.title, post)
-            = "Blog: "
-            = link_to post.blog.name, blog_path(post.blog)
-            br
-            = post.short_body
-        - else
+    - if params[:search].present?
+      = form_tag(posts_path, :method => "get", id: "search-form") do
+        = text_field_tag :search, params[:search], placeholder: "Search Posts"
+        = submit_tag "Search", :name => nil
+      - if @s_posts.blank?
+        | There is no posts with tag "
+        = params[:search]
+        | "
+      - else
+        - @s_posts.each do |post|
           h3 = link_to(post.title, post)
           = "Blog: "
           = link_to post.blog.name, blog_path(post.blog)
           br
-          = post.short_body
+          = post.body
+    - else
+      - posts.each do |post|
+        - if current_user.subscriptions.where(blog_id: post.blog_id).exists? || post.user_id == current_user.id
+          - if params[:blog_id].present?
+            - if post.blog_id == params[:blog_id].to_i
+              h3 = link_to(post.title, post)
+              = "Blog: "
+              = link_to post.blog.name, blog_path(post.blog)
+              br
+              = post.short_body
+          - else
+            h3 = link_to(post.title, post)
+            = "Blog: "
+            = link_to post.blog.name, blog_path(post.blog)
+            br
+            = post.short_body
 
     .paginator
       = paginate(posts)

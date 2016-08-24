@@ -13,6 +13,11 @@ class PostsController < ApplicationController
     @subscription = Subscription.find_by blog_id: post.blog.id, user_id: current_user.id
   end
 
+  def index
+    return unless params[:search]
+    @s_posts = Post.search(params[:search])
+  end
+
   def create
     post.user = current_user
     post.save

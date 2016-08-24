@@ -9,4 +9,8 @@ class Post < ActiveRecord::Base
   belongs_to :user
 
   mount_uploader :photo, PhotoUploader
+
+  def self.search(search)
+    Post.joins("INNER JOIN tags ON tags.post_id = posts.id AND tags.name = '" + search + "'")
+  end
 end

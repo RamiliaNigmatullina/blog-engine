@@ -1,5 +1,5 @@
 .scaffold-form
-  = simple_form_for(post) do |f|
+  = simple_form_for([:users, post]) do |f|
     .form-inputs
       = f.label "Blog"
       = f.collection_select(:blog_id, current_user.blogs, :id, :name)

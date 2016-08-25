@@ -1,8 +1,6 @@
 .row
   .medium-10.columns
     h2 = post.title
-    - if post.photo.url.present?
-      = image_tag(post.photo.url)
     = post.body.html_safe
     - if post.tags.present?
       | Tags:
@@ -10,21 +8,17 @@
         - post.tags.each do |tag|
           = link_to " #" + tag.name, posts_path(search: tag.name)
     br
-    b
-      = "Author: "
-    = link_to post.blog.user.full_name, post.blog
-    br
-    = post.created_at
+    = "Blog: "
+    = link_to post.blog.name, post.blog
 
     .form-actions
       - if policy(post.blog).manage?
-        = link_to(edit_post_path(post), class: "btn") do
+        = link_to(edit_users_post_path(post), class: "btn") do
           i.fi-pencil
           |  Edit
-        = link_to(post, method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" }) do
+          = post.space
+        = link_to([:users, post], method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" }) do
           i.fi-trash
           |  Delete
-        '  or
-      = link_to "Back", :back
 
-    = render "comments/index"
+    = render "users/comments/index"

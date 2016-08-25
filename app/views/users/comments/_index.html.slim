@@ -16,7 +16,7 @@
         - if policy(comment).manage?
           td
             .text-right
-              = link_to "delete", [comment.post, comment],
+              = link_to "delete", [:users, comment.post, comment],
                          method: :delete
 
 
@@ -24,4 +24,12 @@
   h4.margin-top-30
     | Add comment
 
-  = render "comments/form"
+  = render "users/comments/form"
+- else
+  | Please
+  = link_to " login ", new_user_session_path
+  | or
+  = link_to " sign up ", new_user_registration_path
+  | to leave a comment.
+  br
+  br

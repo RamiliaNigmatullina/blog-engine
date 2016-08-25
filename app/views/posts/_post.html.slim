@@ -1,0 +1,6 @@
+h3 = link_to(post.title, post)
+.italic
+  = "Blog: "
+  = link_to post.blog.name, blog_path(post.blog)
+  br
+  = truncate(post.body, length: 500, separator: " ", escape: false)

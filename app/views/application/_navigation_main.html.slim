@@ -4,3 +4,4 @@ ul.left
   - if user_signed_in?
     = active_link_to "Posts", posts_path, active: :exclusive, wrap_tag: :li
     = active_link_to "New post", new_users_post_path, active: :exclusive, wrap_tag: :li
+    = active_link_to "New blog", new_users_blog_path, active: :exclusive, wrap_tag: :li

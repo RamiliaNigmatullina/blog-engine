@@ -1,15 +1,17 @@
 .row
   .medium-10.columns
     h2 = post.title
+    .italic
+      = "Blog: "
+      = link_to post.blog.name, post.blog
     = post.body.html_safe
     - if post.tags.present?
-      | Tags:
-      i
+      .italic
+        | Tags:
         - post.tags.each do |tag|
           = link_to " #" + tag.name, posts_path(search: tag.name)
-    br
-    = "Blog: "
-    = link_to post.blog.name, post.blog
+        br
+        = post.created_at
 
     .form-actions
       - if policy(post.blog).manage?

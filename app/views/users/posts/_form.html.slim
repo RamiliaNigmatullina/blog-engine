@@ -6,7 +6,7 @@
       = f.input :title, autofocus: true
       = f.cktext_area :body, cols: 40, ckeditor: { uiColor: "#e6e6e6", toolbar: "mini" }
       h3
-        | tags
+        | Add tags
       #tags
         = f.simple_fields_for :tags do |tag|
           = render "tag_fields", f: tag

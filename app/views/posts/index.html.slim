@@ -3,9 +3,6 @@
     h2.text-center
       = title("Posts")
 
-    - if posts.empty?
-      | There are no posts yet
-
     - if params[:search].present?
       = form_tag(posts_path, method: "get", id: "search-form") do
         table.table-width-100.white-borders
@@ -21,33 +18,26 @@
       - else
         - @s_posts.each do |post|
           h3 = link_to(post.title, post)
-          = "Blog: "
-          = link_to post.blog.name, blog_path(post.blog)
-          br
-          = post.body.html_safe
-    - else
-      - posts.each do |post|
-        - if current_user.subscriptions.where(blog_id: post.blog_id).exists? || post.user_id == current_user.id
-          - if params[:blog_id].nil? || params[:blog_id].present? && post.blog_id == params[:blog_id].to_i
-            h3 = link_to(post.title, post)
+          .italic
             = "Blog: "
             = link_to post.blog.name, blog_path(post.blog)
+          = truncate(post.body, length: 500, separator: " ", escape: false)
+    - elsif current_user.present?
+      - current_user.subscribed_blogs.each do |blog|
+        - blog.posts.each do |post|
+          - if params[:blog_id].nil? || post.blog_id == params[:blog_id].to_i
+            h3 = link_to(post.title, post)
+            .italic
+              = "Blog: "
+              = link_to post.blog.name, blog_path(post.blog)
             br
-            = post.short_body
+            = truncate(post.body, length: 500, separator: " ", escape: false)
 
-  - unless posts.nil?
-    .medium-3.medium-offset-1.columns
+  .medium-3.medium-offset-1.columns
+    - if current_user.present? && current_user.subscribed_blogs.exists?
       h3
-        | Dashboard
-      = link_to "All posts", posts_path
-      - if current_user.posts.exists?
-        br
-        = link_to "My posts", posts_path(blog_id: current_user.posts.first.blog_id)
-
-      - unless subscriptions.blank?
-        h3
-          = title("My subscriptions")
-        ul
-          - subscriptions.each do |subscription|
-            li
-              = link_to subscription.blog.name, posts_path(blog_id: subscription.blog_id)
+        = title("My subscriptions")
+      ul
+        - current_user.subscribed_blogs.each do |blog|
+          li
+            = link_to blog.name, posts_path(blog_id: blog.id)

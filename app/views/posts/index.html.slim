@@ -8,8 +8,12 @@
 
     - if params[:search].present?
       = form_tag(posts_path, method: "get", id: "search-form") do
-        = text_field_tag :search, params[:search], placeholder: "Search Posts"
-        = submit_tag "Search", name: nil
+        table.table-width-100.white-borders
+          tr
+            td
+              = text_field_tag :search, params[:search], placeholder: "Search Posts"
+            td
+              = submit_tag "Search", name: nil
       - if @s_posts.blank?
         | There is no posts with tag "
         = params[:search]
@@ -20,7 +24,7 @@
           = "Blog: "
           = link_to post.blog.name, blog_path(post.blog)
           br
-          = post.body
+          = post.body.html_safe
     - else
       - posts.each do |post|
         - if current_user.subscriptions.where(blog_id: post.blog_id).exists? || post.user_id == current_user.id
@@ -31,9 +35,6 @@
             br
             = post.short_body
 
-    .paginator
-      = paginate(posts)
-
   - unless posts.nil?
     .medium-3.medium-offset-1.columns
       h3
@@ -43,7 +44,7 @@
         br
         = link_to "My posts", posts_path(blog_id: current_user.posts.first.blog_id)
 
-      - unless subscriptions.nil?
+      - unless subscriptions.blank?
         h3
           = title("My subscriptions")
         ul

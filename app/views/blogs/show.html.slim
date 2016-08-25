@@ -2,21 +2,23 @@
   .medium-8.columns
     h2
       = blog.name
-    h4
+    h5
       i
         = blog.description
-      - blog.posts.each do |post|
-        h4 = link_to(post.title, post)
-        = post.short_body
+    hr
+    - blog.posts.each do |post|
+      h4 = link_to(post.title, post)
+      = post.short_body
 
   .medium-4.columns
-    h3.margin-bottom-20
-      = blog.author
+    h4.margin-bottom-20
+      = "Author: "
+      = link_to blog.user.username, profile_path(blog.user)
 
     h5
       = blog.category
       br
-      - unless policy(blog).manage?
+      - unless policy(blog).manage? || current_user.nil?
         .margin-bottom-20
           - if @subscription.nil?
             = link_to "Subscribe", { controller: "subscriptions", action: "create", blog_id: blog.id }, { method: "post" }
@@ -28,9 +30,10 @@
 
       .form-actions
         - if policy(blog).manage?
-          = link_to(edit_blog_path(blog), class: "btn") do
+          = link_to(edit_users_blog_path(blog), class: "btn") do
             i.fi-pencil
             |  Edit
-          = link_to(blog, method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" }) do
+            = blog.space
+          = link_to([:users, blog], method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" }) do
             i.fi-trash
             |  Delete

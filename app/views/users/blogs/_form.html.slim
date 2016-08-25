@@ -1,5 +1,5 @@
 .scaffold-form
-  = simple_form_for(blog) do |f|
+  = simple_form_for([:users, blog]) do |f|
     .form-inputs
       = f.input :name, autofocus: true
       = f.input :description

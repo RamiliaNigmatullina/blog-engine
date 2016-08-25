@@ -1,6 +1,6 @@
 class BlogDecorator < ApplicationDecorator
   decorates_association :posts
-  delegate :id, :name, :description, :category_id, :category
+  delegate :id, :name, :description, :category_id, :category, :user
 
   def subscribers_number
     "Subscribers: #{object.users.size}"
@@ -20,5 +20,9 @@ class BlogDecorator < ApplicationDecorator
 
   def category
     "Category: #{object.category.name}"
+  end
+
+  def space
+    " "
   end
 end

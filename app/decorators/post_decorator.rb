@@ -7,7 +7,7 @@ class PostDecorator < ApplicationDecorator
   end
 
   def short_body
-    h.truncate object.body.html_safe, length: 500
+    h.truncate object.body.html_safe, length: 500, escape: false
   end
 
   def comments_count

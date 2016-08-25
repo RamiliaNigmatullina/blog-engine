@@ -11,6 +11,6 @@ class Post < ActiveRecord::Base
   mount_uploader :photo, PhotoUploader
 
   def self.search(search)
-    Post.joins(:tags).where(tags: { name: search })
+    Post.joins(:tags).where(tags: { name: search }).distinct
   end
 end

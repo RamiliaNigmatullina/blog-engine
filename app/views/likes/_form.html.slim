@@ -1,12 +1,10 @@
 - if user_signed_in?
   - if like
     = link_to(like, method: "delete") do
-      i.fi-dislike.large
-      '  Dislike
+      ' Dislike
   - else
     = link_to(likes_path(post_id: post.id), method: "post") do
-      i.fi-like.large
-      '  Like
+      ' Like
   = post.likes_first_form
 - else
   = post.likes_second_form

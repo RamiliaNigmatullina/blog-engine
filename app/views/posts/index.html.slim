@@ -23,6 +23,9 @@
 
   .medium-3.medium-offset-1.columns
     - if user_signed_in? && current_user.subscribed_blogs.exists?
+      h3 Dashboard
+      = link_to "All posts", posts_path
+
       h3
         = title("My subscriptions")
       ul

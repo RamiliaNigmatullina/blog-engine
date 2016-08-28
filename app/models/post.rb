@@ -9,8 +9,4 @@ class Post < ActiveRecord::Base
   belongs_to :user
 
   mount_uploader :photo, PhotoUploader
-
-  def self.search(search)
-    Post.joins(:tags).where(tags: { name: search }).distinct
-  end
 end

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations" }
 
   resources :comments
-  resources :subscriptions
+  resources :subscriptions, only: %i(create destroy)
 
   resources :profiles, only: %i(show)
   resources :posts, only: %i(index show)

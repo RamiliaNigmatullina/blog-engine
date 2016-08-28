@@ -12,16 +12,7 @@
           => link_to "#" + tag.name, posts_path(q: tag.name)
         br
         = post.created_at
-
-    - if like
-      = link_to(like, method: "delete") do
-        i.fi-dislike.large
-        '  Dislike
-    - else
-      = link_to(likes_path(post_id: post.id), method: "post") do
-        i.fi-like.large
-        '  Like
-    = post.likes
+    = render "likes/form"
 
     .form-actions
       - if policy(post.blog).manage?

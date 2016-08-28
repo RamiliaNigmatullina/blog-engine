@@ -11,30 +11,18 @@
               = text_field_tag :search, params[:search], placeholder: "Search Posts"
             td
               = submit_tag "Search", name: nil
-      - if @s_posts.blank?
+      - if posts
+        = render posts
+      - else
         | There is no posts with tag "
         = params[:search]
         | "
-      - else
-        - @s_posts.each do |post|
-          h3 = link_to(post.title, post)
-          .italic
-            ' Blog:
-            = link_to post.blog.name, blog_path(post.blog)
-          = truncate(post.body, length: 500, separator: " ", escape: false)
-    - elsif current_user.present?
-      - current_user.subscribed_blogs.each do |blog|
-        - blog.posts.each do |post|
-          - if params[:blog_id].nil? || post.blog_id == params[:blog_id].to_i
-            h3 = link_to(post.title, post)
-            .italic
-              ' Blog:
-              = link_to post.blog.name, blog_path(post.blog)
-            br
-            = truncate(post.body, length: 500, separator: " ", escape: false)
+
+    - elsif user_signed_in?
+      = render posts
 
   .medium-3.medium-offset-1.columns
-    - if current_user.present? && current_user.subscribed_blogs.exists?
+    - if user_signed_in? && current_user.subscribed_blogs.exists?
       h3
         = title("My subscriptions")
       ul

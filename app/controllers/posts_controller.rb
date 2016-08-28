@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   respond_to :html
 
   expose_decorated(:post, attributes: :post_params)
-  # TODO: move posts here
+  expose_decorated(:posts) { fetch_posts }
+
   expose_decorated(:comments) { post_comments }
   expose_decorated(:subscriptions) { current_user_subscriptions }
 
@@ -10,8 +11,6 @@ class PostsController < ApplicationController
   end
 
   def index
-    return unless params[:search]
-    @s_posts = Post.search(params[:search])
   end
 
   private
@@ -22,5 +21,13 @@ class PostsController < ApplicationController
 
   def current_user_subscriptions
     current_user.subscriptions.includes(:blog)
+  end
+
+  def fetch_posts
+    if params[:search]
+      Post.includes(:blog).joins(:tags).where(tags: { name: params[:search] })
+    else
+      Post.includes(:blog).page(params[:page]).per(5)
+    end
   end
 end

@@ -13,8 +13,4 @@ class Post < ActiveRecord::Base
   def self.search(search)
     Post.joins(:tags).where(tags: { name: search }).distinct
   end
-
-  def self.subscribed_blogs(user)
-    Post.joins(:subscriptions).where(subscriptions: { user_id: user.id })
-  end
 end

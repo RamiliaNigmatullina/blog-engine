@@ -15,8 +15,7 @@
     h5
       = blog.category
       br
-      / # TODO use if
-      - if !policy(blog).manage? && !current_user.nil?
+      - if user_signed_in? && !policy(blog).manage?
         .margin-bottom-20
           - if subscription
             = link_to "Unsubcsribe", subscription, method: "delete"

@@ -14,22 +14,16 @@
         td
           = comment.body
         - if policy(comment).manage?
-          td
-            .text-right
-              = link_to "delete", [:users, comment.post, comment],
-                         method: :delete
+          td.text-right
+            = link_to "delete", [:users, comment.post, comment], method: :delete
 
 
 - if current_user.present?
-  h4.margin-top-30
-    | Add comment
-
+  h4.margin-top-30 Add comment
   = render "users/comments/form"
 - else
-  | Please
-  = link_to " login ", new_user_session_path
-  | or
-  = link_to " sign up ", new_user_registration_path
-  | to leave a comment.
-  br
-  br
+  ' Please
+  => link_to "login", new_user_session_path
+  ' or
+  => link_to "sign up", new_user_registration_path
+  ' to leave a comment.

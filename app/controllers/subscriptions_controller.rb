@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
 
   def create
     subscription.user = current_user
-    subscription.blog_id = blog.id
+    subscription.blog = blog
 
     subscription.save
     redirect_to blog

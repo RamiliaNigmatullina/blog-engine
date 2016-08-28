@@ -5,6 +5,7 @@ module Users
     expose_decorated(:post, attributes: :post_params)
 
     def new
+      redirect_to new_users_blog_path if current_user.blogs.empty?
     end
 
     def create

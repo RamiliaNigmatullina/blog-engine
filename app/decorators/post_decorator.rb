@@ -11,10 +11,6 @@ class PostDecorator < ApplicationDecorator
   end
 
   def comments_count
-    "Commets (#{object.comments.length})"
-  end
-
-  def space
-    " "
+    "Comments (#{object.comments.count})"
   end
 end

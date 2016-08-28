@@ -19,7 +19,7 @@
         - @s_posts.each do |post|
           h3 = link_to(post.title, post)
           .italic
-            = "Blog: "
+            ' Blog:
             = link_to post.blog.name, blog_path(post.blog)
           = truncate(post.body, length: 500, separator: " ", escape: false)
     - elsif current_user.present?
@@ -28,7 +28,7 @@
           - if params[:blog_id].nil? || post.blog_id == params[:blog_id].to_i
             h3 = link_to(post.title, post)
             .italic
-              = "Blog: "
+              ' Blog:
               = link_to post.blog.name, blog_path(post.blog)
             br
             = truncate(post.body, length: 500, separator: " ", escape: false)

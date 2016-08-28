@@ -4,11 +4,17 @@ class BlogsController < ApplicationController
   expose_decorated :blog
   expose_decorated :blogs
 
+  expose(:subscription) { fetch_subscription }
+
   def index
   end
 
   def show
-    return unless current_user.present?
-    @subscription = Subscription.find_by blog_id: blog.id, user_id: current_user.id
+  end
+
+  private
+
+  def fetch_subscription
+    current_user.subscriptions.where(blog_id: blog.id).first if current_user
   end
 end

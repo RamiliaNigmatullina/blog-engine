@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   respond_to :html
 
   expose_decorated(:post, attributes: :post_params)
-
+  # TODO: move posts here
   expose_decorated(:comments) { post_comments }
   expose_decorated(:subscriptions) { current_user_subscriptions }
 

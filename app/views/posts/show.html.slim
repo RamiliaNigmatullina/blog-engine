@@ -1,15 +1,15 @@
 .row
-  .medium-10.columns
+  .medium-8.columns
     h2 = post.title
     .italic
-      = "Blog: "
+      ' Blog:
       = link_to post.blog.name, post.blog
     = post.body.html_safe
     - if post.tags.present?
       .italic
-        | Tags:
+        ' Tags:
         - post.tags.each do |tag|
-          = link_to " #" + tag.name, posts_path(search: tag.name)
+          = link_to "#" + tag.name, posts_path(search: tag.name)
         br
         = post.created_at
 
@@ -17,10 +17,9 @@
       - if policy(post.blog).manage?
         = link_to(edit_users_post_path(post), class: "btn") do
           i.fi-pencil
-          |  Edit
-          = post.space
+          ' Edit
         = link_to([:users, post], method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" }) do
           i.fi-trash
-          |  Delete
+          | Delete
 
     = render "users/comments/index"

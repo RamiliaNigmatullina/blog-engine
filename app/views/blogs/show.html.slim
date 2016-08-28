@@ -2,28 +2,27 @@
   .medium-8.columns
     h2
       = blog.name
-    h5
-      i
-        = blog.description
+    h5.italic
+      = blog.description
     hr
-    - blog.posts.each do |post|
-      h4 = link_to(post.title, post)
-      = post.short_body
+    = render blog.posts
 
   .medium-4.columns
     h4.margin-bottom-20
-      = "Author: "
+      ' Author:
       = link_to blog.user.username, profile_path(blog.user)
 
     h5
       = blog.category
       br
-      - unless policy(blog).manage? || current_user.nil?
+      / # TODO use if
+      - if !policy(blog).manage? && !current_user.nil?
         .margin-bottom-20
-          - if @subscription.nil?
-            = link_to "Subscribe", { controller: "subscriptions", action: "create", blog_id: blog.id }, { method: "post" }
+          - if subscription
+            = link_to "Unsubcsribe", subscription, method: "delete"
           - else
-            = link_to "Unsubcsribe", @subscription, method: "delete"
+            = link_to "Subscribe", subscriptions_path(blog_id: blog.id), method: "post"
+
       = blog.subscribers_number
       br
       = blog.posts_number
@@ -32,8 +31,7 @@
         - if policy(blog).manage?
           = link_to(edit_users_blog_path(blog), class: "btn") do
             i.fi-pencil
-            |  Edit
-            = blog.space
+            ' Edit
           = link_to([:users, blog], method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" }) do
             i.fi-trash
             |  Delete

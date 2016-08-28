@@ -16,5 +16,9 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: "pages#home"
+  authenticated :user do
+    root to: "posts#index", as: "authenticated_root"
+  end
+
+  root to: "blogs#index"
 end

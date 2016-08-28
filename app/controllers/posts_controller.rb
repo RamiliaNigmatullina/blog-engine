@@ -27,7 +27,8 @@ class PostsController < ApplicationController
     if params[:q]
       Post.includes(:blog).joins(:tags).where(tags: { name: params[:q] })
     else
-      Post.includes(:blog).joins(blog: :subscriptions).where(subscriptions: { user_id: current_user.id }).order(created_at: :desc)
+      Post.includes(:blog).joins(blog: :subscriptions).where(subscriptions: { user_id: current_user.id })
+          .order(created_at: :desc)
     end
   end
 

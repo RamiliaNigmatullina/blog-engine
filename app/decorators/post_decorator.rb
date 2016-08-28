@@ -1,5 +1,6 @@
 class PostDecorator < ApplicationDecorator
-  delegate :title, :body, :photo, :blog, :comments, :blog_id, :user_id, :id, :tags
+  # delegate :title, :body, :photo, :blog, :comments, :blog_id, :user_id, :id, :tags
+  delegate_all
 
   def created_at
     "#{object.created_at.strftime('%b %e, %Y')} at #{object.created_at.strftime('%H:%M')}"

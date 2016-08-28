@@ -1,13 +1,13 @@
 class BlogDecorator < ApplicationDecorator
   decorates_association :posts
   delegate :id, :name, :description, :category_id, :category, :user, to: :object
-  # TODO: use .count
+
   def subscribers_number
-    "Subscribers: #{object.subscriptions.size}"
+    "Subscribers: #{object.subscriptions.count}"
   end
 
   def posts_number
-    "Posts: #{object.posts.size}"
+    "Posts: #{object.posts.count}"
   end
 
   def user_full_name

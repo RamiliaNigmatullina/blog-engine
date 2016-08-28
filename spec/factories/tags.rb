@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :tag do
-    post nil
+    name Faker::Lorem.words(1)
+    post
   end
 end

@@ -7,6 +7,8 @@ class PostsController < ApplicationController
   expose_decorated(:comments) { post_comments }
   expose_decorated(:subscriptions) { current_user_subscriptions }
 
+  expose(:like) { fetch_like }
+
   def show
   end
 
@@ -34,5 +36,9 @@ class PostsController < ApplicationController
 
   def fetch_post
     Post.includes(:blog).find_by id: params[:id]
+  end
+
+  def fetch_like
+    current_user.likes.where(post_id: post.id).first if current_user
   end
 end

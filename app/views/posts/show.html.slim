@@ -13,6 +13,16 @@
         br
         = post.created_at
 
+    - if like
+      = link_to(like, method: "delete") do
+        i.fi-dislike.large
+        '  Dislike
+    - else
+      = link_to(likes_path(post_id: post.id), method: "post") do
+        i.fi-like.large
+        '  Like
+    = post.likes
+
     .form-actions
       - if policy(post.blog).manage?
         = link_to(edit_users_post_path(post), class: "btn") do

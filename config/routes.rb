@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :likes
   mount Ckeditor::Engine => "/ckeditor"
   devise_for :users, controllers: { registrations: "users/registrations" }
 

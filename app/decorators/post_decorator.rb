@@ -13,4 +13,8 @@ class PostDecorator < ApplicationDecorator
   def comments_count
     "Comments (#{object.comments.count})"
   end
+
+  def likes
+    "(#{object.likes.count})"
+  end
 end

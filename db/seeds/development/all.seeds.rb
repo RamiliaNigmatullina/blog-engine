@@ -30,6 +30,7 @@ FactoryGirl.create(:category, name: "Travel")
 FactoryGirl.create(:user, email: "user@example.com", username: "user")
 FactoryGirl.create(:user, full_name: "Brian Wilson", email: "brian@gmail.com", username: "brian")
 FactoryGirl.create(:user, full_name: "Peter Moore", email: "peter@gmail.com", username: "peter")
+FactoryGirl.create(:user, full_name: "Ramilia Nigmatullina", email: "ramilia@gmail.com", username: "ramilia")
 
 
 FactoryGirl.create(:blog, name: "Film School Rejects", description: "A Website About Movies", user_id: 2, category_id: 9)
@@ -37,6 +38,7 @@ FactoryGirl.create(:blog, name: "Atlas Obscura", description: "New wonders and c
 
 FactoryGirl.create(:subscription, blog_id: 1, user_id: 3)
 FactoryGirl.create(:subscription, blog_id: 2, user_id: 2)
+FactoryGirl.create(:subscription, blog_id: 2, user_id: 1)
 
 FactoryGirl.create(:post, title: "Harry Potter and the Philosopher's Stone", blog_id: 1, user_id: 2)
 FactoryGirl.create(:post, title: "Harry Potter and the Chamber of Secrets", blog_id: 1, user_id: 2)

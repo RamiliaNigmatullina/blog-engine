@@ -3,19 +3,19 @@
     h2.text-center
       = title("Posts")
 
-    - if params[:search].present?
+    - if params[:q]
       = form_tag(posts_path, method: "get", id: "search-form") do
         table.table-width-100.white-borders
           tr
             td
-              = text_field_tag :search, params[:search], placeholder: "Search Posts"
+              = text_field_tag :q, params[:q], placeholder: "Search Posts"
             td
               = submit_tag "Search", name: nil
       - if posts
         = render posts
       - else
         | There is no posts with tag "
-        = params[:search]
+        = params[:q]
         | "
 
     - elsif user_signed_in?

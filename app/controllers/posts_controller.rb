@@ -24,8 +24,8 @@ class PostsController < ApplicationController
   end
 
   def fetch_posts
-    if params[:search]
-      Post.includes(:blog).joins(:tags).where(tags: { name: params[:search] })
+    if params[:q]
+      Post.includes(:blog).joins(:tags).where(tags: { name: params[:q] })
     else
       Post.includes(:blog).page(params[:page]).per(5)
     end

@@ -51,6 +51,14 @@ FactoryGirl.create(:post, title: "Spitzhäuschen in Bernkastel-Kues, Germany", b
 FactoryGirl.create(:post, title: "A Move for the Frugal Traveler", blog_id: 3, user_id: 4)
 FactoryGirl.create(:post, title: "Is New York’s New Bike-Sharing Program Good for Tourists?", blog_id: 3, user_id: 4)
 
+FactoryGirl.create(:post, title: "Now You See Me", blog_id: 1, user_id: 2)
+FactoryGirl.create(:post, title: "Inception", blog_id: 1, user_id: 2)
+FactoryGirl.create(:post, title: "Good Will Hunting", blog_id: 1, user_id: 2)
+FactoryGirl.create(:post, title: "The Lord of the Rings", blog_id: 1, user_id: 2)
+FactoryGirl.create(:post, title: "The Departed", blog_id: 1, user_id: 2)
+FactoryGirl.create(:post, title: "Sherlock Holmes", blog_id: 1, user_id: 2)
+FactoryGirl.create(:post, title: "USA", blog_id: 2, user_id: 3)
+
 FactoryGirl.create(:comment, user_id: 2, post_id: 4)
 FactoryGirl.create(:comment, user_id: 2, post_id: 5)
 FactoryGirl.create(:comment, user_id: 2, post_id: 5)

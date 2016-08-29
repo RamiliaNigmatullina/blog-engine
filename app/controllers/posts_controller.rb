@@ -31,13 +31,13 @@ class PostsController < ApplicationController
 
   def fetch_posts
     if params[:q]
-      Post.includes(:blog).joins(:tags).where(tags: { name: params[:q] })
+      Post.includes(:blog).joins(:tags).where(tags: { name: params[:q] }).page(params[:page]).per(10)
     elsif params[:blog_id]
       Post.includes(:blog).joins(:blog)
-          .where(blogs: { id: params[:blog_id] }).order(created_at: :desc)
+          .where(blogs: { id: params[:blog_id] }).order(created_at: :desc).page(params[:page]).per(10)
     else
       Post.includes(:blog).joins(blog: :subscriptions)
-          .where(subscriptions: { user_id: current_user.id }).order(created_at: :desc)
+          .where(subscriptions: { user_id: current_user.id }).order(created_at: :desc).page(params[:page]).per(10)
     end
   end
 

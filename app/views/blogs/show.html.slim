@@ -5,7 +5,9 @@
     h5.italic
       = blog.description
     hr
-    = render blog.posts
+    = render posts
+    .paginator
+      = paginate(posts)
 
   .medium-4.columns
     h4.margin-bottom-20

@@ -21,6 +21,9 @@
     - elsif user_signed_in?
       = render posts
 
+    .paginator
+      = paginate(posts)
+
   .medium-3.medium-offset-1.columns
     - if user_signed_in? && (current_user.subscribed_blogs.exists? || current_user.blogs.exists?)
       h3 Dashboard

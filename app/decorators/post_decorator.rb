@@ -14,11 +14,7 @@ class PostDecorator < ApplicationDecorator
     "Comments (#{object.comments.count})"
   end
 
-  def likes_first_form
-    "(#{object.likes.count})"
-  end
-
-  def likes_second_form
+  def likes
     "Likes: #{object.likes.count}"
   end
 end

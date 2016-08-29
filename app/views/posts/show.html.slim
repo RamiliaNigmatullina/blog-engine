@@ -10,8 +10,8 @@
         ' Tags:
         - post.tags.each do |tag|
           => link_to "#" + tag.name, posts_path(q: tag.name)
-        br
-        = post.created_at
+    .italic
+      = post.created_at
     = render "likes/form"
 
     .form-actions

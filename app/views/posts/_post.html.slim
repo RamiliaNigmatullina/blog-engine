@@ -2,5 +2,6 @@ h3 = link_to(post.title, post)
 .italic
   ' Blog:
   = link_to post.blog.name, blog_path(post.blog)
-  br
-  = post.short_body
+= post.short_body
+.margin-top-10
+  = post.created_at

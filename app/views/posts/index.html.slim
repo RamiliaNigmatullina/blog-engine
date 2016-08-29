@@ -22,13 +22,19 @@
       = render posts
 
   .medium-3.medium-offset-1.columns
-    - if user_signed_in? && current_user.subscribed_blogs.exists?
+    - if user_signed_in? && (current_user.subscribed_blogs.exists? || current_user.blogs.exists?)
       h3 Dashboard
-      = link_to "All posts", posts_path
+      - if current_user.blogs.exists?
+        h4 = title("My blogs")
+        ul
+          - current_user.blogs.each do |blog|
+            li
+              = link_to blog.name, posts_path(blog_id: blog.id)
 
-      h3
-        = title("My subscriptions")
-      ul
-        - current_user.subscribed_blogs.each do |blog|
-          li
-            = link_to blog.name, posts_path(blog_id: blog.id)
+      - if current_user.subscribed_blogs.exists?
+        h4 = title("My subscriptions")
+        = link_to "All posts", posts_path
+        ul
+          - current_user.subscribed_blogs.each do |blog|
+            li
+              = link_to blog.name, posts_path(blog_id: blog.id)

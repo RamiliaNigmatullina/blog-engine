@@ -5,8 +5,8 @@ class PostsController < ApplicationController
   expose_decorated(:posts) { fetch_posts }
 
   expose_decorated(:comments) { post_comments }
-  expose_decorated(:subscriptions) { current_user_subscriptions }
 
+  expose(:subscriptions) { current_user_subscriptions }
   expose(:like) { fetch_like }
 
   def show

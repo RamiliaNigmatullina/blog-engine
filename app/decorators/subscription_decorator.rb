@@ -1,2 +1,0 @@
-class SubscriptionDecorator < ApplicationDecorator
-end

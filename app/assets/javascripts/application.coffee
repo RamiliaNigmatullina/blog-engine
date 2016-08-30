@@ -12,6 +12,5 @@
 #= require_tree ../templates
 #= require_tree .
 #= require ckeditor/init
-#= require cocoon
 
 $(document).foundation()

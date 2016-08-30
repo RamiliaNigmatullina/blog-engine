@@ -38,6 +38,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts-as-taggable-on (4.0.0)
+      activerecord (>= 4.0)
     addressable (2.4.0)
     arel (6.0.3)
     ast (2.3.0)
@@ -82,7 +84,6 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
-    cocoon (1.2.9)
     codeclimate-test-reporter (0.4.7)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.1)
@@ -386,6 +387,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_link_to
+  acts-as-taggable-on (~> 4.0)
   autoprefixer-rails
   awesome_print
   brakeman
@@ -396,7 +398,6 @@ DEPENDENCIES
   capybara-webkit
   carrierwave
   ckeditor
-  cocoon
   codeclimate-test-reporter
   coffee-rails
   coffeelint

@@ -8,8 +8,7 @@
     - if post.tags.present?
       .italic
         ' Tags:
-        - post.tags.each do |tag|
-          => link_to "#" + tag.name, posts_path(q: tag.name)
+        = raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(", ")
     .italic
       = post.created_at
     = render "likes/form"

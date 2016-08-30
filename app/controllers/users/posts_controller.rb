@@ -33,7 +33,7 @@ module Users
     private
 
     def post_params
-      params.require(:post).permit(:title, :body, :blog_id, tags_attributes: %i(id post_id name _destroy))
+      params.require(:post).permit(:title, :body, :blog_id, :tag_list)
     end
   end
 end

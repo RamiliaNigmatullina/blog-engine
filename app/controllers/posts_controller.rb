@@ -31,7 +31,7 @@ class PostsController < ApplicationController
 
   def fetch_posts
     if params[:q]
-      Post.includes(:blog).joins(:tags).where(tags: { name: params[:q] }).page(params[:page]).per(10)
+      Post.includes(:blog).tagged_with(params[:q]).page(params[:page]).per(10)
     elsif params[:blog_id]
       Post.includes(:blog).joins(:blog)
           .where(blogs: { id: params[:blog_id] }).order(created_at: :desc).page(params[:page]).per(10)

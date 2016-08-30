@@ -3,11 +3,13 @@ class Post < ActiveRecord::Base
   validates :body, presence: true
 
   has_many :comments, dependent: :destroy
-  has_many :tags
   has_many :likes
-  accepts_nested_attributes_for :tags, reject_if: :all_blank, allow_destroy: true
+
   belongs_to :blog
   belongs_to :user
 
   mount_uploader :photo, PhotoUploader
+
+  acts_as_ordered_taggable
+  acts_as_ordered_taggable_on :tags
 end

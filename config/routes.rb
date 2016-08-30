@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  resources :likes
+  get "/tags/:q", to: "posts#index", as: "tag"
+
   mount Ckeditor::Engine => "/ckeditor"
   devise_for :users, controllers: { registrations: "users/registrations" }
 
+  resources :likes
   resources :comments
   resources :subscriptions, only: %i(create destroy)
 

@@ -23,9 +23,9 @@ gem "simple_form"
 gem "slim"
 
 # all other gems
+gem "acts-as-taggable-on", "~> 4.0"
 gem "carrierwave"
 gem "ckeditor"
-gem "cocoon"
 gem "decent_decoration"
 gem "decent_exposure"
 gem "devise"

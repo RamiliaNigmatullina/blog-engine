@@ -4,14 +4,8 @@
       = f.label "Blog"
       = f.collection_select(:blog_id, current_user.blogs, :id, :name)
       = f.input :title, autofocus: true
+      = f.input :tag_list
       = f.cktext_area :body, cols: 40, ckeditor: { uiColor: "#e6e6e6", toolbar: "mini" }
-      h3
-        | Add tags
-      #tags
-        = f.simple_fields_for :tags do |tag|
-          = render "tag_fields", f: tag
-        .links
-          = link_to_add_association "add tag", f, :tags
 
     .form-actions
       = f.button :submit

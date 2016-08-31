@@ -6,6 +6,7 @@ class BlogsController < ApplicationController
 
   expose_decorated(:posts) { blog_posts }
   expose(:subscription) { fetch_subscription }
+  expose(:categories) { fetch_categories }
 
   def index
   end
@@ -21,5 +22,9 @@ class BlogsController < ApplicationController
 
   def fetch_subscription
     current_user.subscriptions.where(blog_id: blog.id).first if current_user
+  end
+
+  def fetch_categories
+    Category.includes(:blogs)
   end
 end

@@ -7,12 +7,15 @@
       - if posts
         = render posts
       - else
-        | There is no posts with tag "
+        | There are no posts with tag "
         = params[:q]
         | "
 
     - elsif user_signed_in?
-      = render posts
+      - if posts.present?
+        = render posts
+      - else
+        h5 There are no posts
 
     .paginator
       = paginate(posts)

@@ -10,10 +10,9 @@
       h3 Popular categories
       - categories.each do |category|
         - if category.blogs.present?
-          .category
-            h4
-              a href="#" = category.name
-            ul
-              - category.blogs.each do |blog|
-                li style="display: none"
-                  = link_to blog.name, blog
+          h4.category
+            a href="#" = category.name
+          ul
+            - category.blogs.each do |blog|
+              li
+                = link_to blog.name, blog

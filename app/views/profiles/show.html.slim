@@ -6,16 +6,18 @@
       = user.username
       | )
     table
-      tr
-        td Blogs
-        td = raw user.blogs.map { |blog| link_to blog.name, blog }.join(", ")
-      tr
-        td Posts number
-        td = user.posts_number
+      - if user.blogs.present?
+        tr
+          td Blogs
+          td = raw user.blogs.map { |blog| link_to blog.name, blog }.join(", ")
+        tr
+          td Posts number
+          td = user.posts_number
       tr
         td Comments number
         td = user.comments_number
-      tr
-        td Reading
-        td = raw user.subscribed_blogs.map { |blog| link_to blog.name, blog }.join(", ")
+      - if user.subscribed_blogs.present?
+        tr
+          td Reading
+          td = raw user.subscribed_blogs.map { |blog| link_to blog.name, blog }.join(", ")
 

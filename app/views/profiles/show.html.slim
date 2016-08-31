@@ -1,24 +1,21 @@
 .row
-  .medium-6.columns
-    h2 = user.full_name
+  .medium-8.columns
+    h2
+      => user.full_name
+      | (
+      = user.username
+      | )
     table
       tr
-        td
-          | Birthday
-        td
-          | DATE
+        td Blogs
+        td = raw user.blogs.map { |blog| link_to blog.name, blog }.join(", ")
       tr
-        td
-          | Country, city
-        td
-          | COUNTRY, CITY
+        td Posts number
+        td = user.posts_number
       tr
-        td
-          | Blogs
-        td
-          | BLOG_1 (4), BLOG_2 (2)
+        td Comments number
+        td = user.comments_number
       tr
-        td
-          | Posts number
-        td
-          | 6
+        td Reading
+        td = raw user.subscribed_blogs.map { |blog| link_to blog.name, blog }.join(", ")
+

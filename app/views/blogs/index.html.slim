@@ -6,11 +6,14 @@
     - if blogs.empty?
       | There are no blogs yet
     - else
+
       h3 Popular categories
       - categories.each do |category|
         - if category.blogs.present?
-          h4 = category.name
-          ul
-            - category.blogs.each do |blog|
-              li
-                = link_to blog.name, blog
+          .category
+            h4
+              a href="#" = category.name
+            ul
+              - category.blogs.each do |blog|
+                li style="display: none"
+                  = link_to blog.name, blog

@@ -13,7 +13,7 @@ class User
     end
 
     def account_update
-      default_params.permit(USER_PARAMS)
+      default_params.permit(USER_PARAMS, :profile_image)
     end
   end
 end

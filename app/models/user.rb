@@ -12,4 +12,6 @@ class User < ActiveRecord::Base
   has_many :subscribed_blogs, through: :subscriptions, source: :blog
   has_many :blogs
   has_many :likes
+
+  attachment :profile_image
 end

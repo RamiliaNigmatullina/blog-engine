@@ -10,6 +10,7 @@
         html: { method: :put } do |f|
 
       .form-inputs
+        = f.attachment_field :profile_image
         = f.input :username, required: true, autofocus: true
         = f.input :full_name, required: true
         = f.input :email, required: true

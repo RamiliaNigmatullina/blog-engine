@@ -41,6 +41,8 @@ gem "puma"
 gem "pundit"
 gem "rack-canonical-host"
 gem "rack-mini-profiler", ">= 0.10.1", require: false
+gem "refile", ">= 0.5.4", require: "refile/rails"
+gem "refile-mini_magick"
 gem "responders"
 gem "rollbar"
 gem "seedbank"

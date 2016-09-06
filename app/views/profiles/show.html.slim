@@ -1,10 +1,7 @@
 .row
   .medium-4.columns
     br
-    - if attachment_url(user, :profile_image).present?
-      = image_tag attachment_url(user, :profile_image, :fill, 300, 300)
-    - else
-      = image_tag("/images/avatar/default_avatar.png")
+    = image_tag attachment_url(user, :profile_image, :fill, 300, 300, fallback: "/images/avatar/default_avatar.png")
   .medium-8.columns
     h2
       => user.full_name

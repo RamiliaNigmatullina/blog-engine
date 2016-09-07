@@ -1,5 +1,5 @@
 class PostDecorator < ApplicationDecorator
-  # delegate :title, :body, :photo, :blog, :comments, :blog_id, :user_id, :id, :tags
+  # delegate :title, :body, :photo, :blog, :comments, :user_id, :id, :tags
   delegate_all
 
   def created_at

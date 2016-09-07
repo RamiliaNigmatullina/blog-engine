@@ -1,6 +1,6 @@
 module Ckeditor
   class AttachmentFile < Ckeditor::Asset
-    mount_uploader :data, CkeditorAttachmentFileUploader, mount_on: :data_file_name
+    attachment :data, extension: attachment_file_types
 
     def url_thumb
       @url_thumb ||= Ckeditor::Utils.filethumb(filename)

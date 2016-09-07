@@ -3,7 +3,7 @@
     br
     = image_tag attachment_url(user, :profile_image, :fill, 300, 300, fallback: "/images/avatar/default_avatar.png")
   .medium-8.columns
-    h2.italic
+    h2
       => user.full_name
       | (
       = user.username

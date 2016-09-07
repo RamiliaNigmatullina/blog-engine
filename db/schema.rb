@@ -75,9 +75,13 @@ ActiveRecord::Schema.define(version: 20160907122520) do
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "blog_id"
     t.integer  "user_id"
+    t.integer  "post_id"
   end
 
+  add_index "posts", ["blog_id"], name: "index_posts_on_blog_id", using: :btree
+  add_index "posts", ["post_id"], name: "index_posts_on_post_id", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
@@ -150,6 +154,7 @@ ActiveRecord::Schema.define(version: 20160907122520) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
+  add_foreign_key "posts", "posts"
   add_foreign_key "posts", "users"
   add_foreign_key "subscriptions", "blogs"
   add_foreign_key "subscriptions", "users"

@@ -1,6 +1,8 @@
-class CreateSubscriptions < ActiveRecord::Migration
+class CreatePosts < ActiveRecord::Migration
   def change
-    create_table :subscriptions do |t|
+    create_table :posts do |t|
+      t.string :title
+      t.text :body
       t.references :blog, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true
 

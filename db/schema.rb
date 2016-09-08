@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160907123042) do
+ActiveRecord::Schema.define(version: 20160908195240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "blogs", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
     t.integer  "user_id"
+    t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.string   "name"
-    t.integer  "category_id"
-    t.string   "description"
   end
 
   add_index "blogs", ["category_id"], name: "index_blogs_on_category_id", using: :btree
@@ -73,22 +73,18 @@ ActiveRecord::Schema.define(version: 20160907123042) do
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
+    t.integer  "blog_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
-    t.integer  "post_id"
-    t.integer  "blog_id"
   end
 
   add_index "posts", ["blog_id"], name: "index_posts_on_blog_id", using: :btree
-  add_index "posts", ["post_id"], name: "index_posts_on_post_id", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "blog_id"
+    t.integer "user_id"
+    t.integer "blog_id"
   end
 
   add_index "subscriptions", ["blog_id"], name: "index_subscriptions_on_blog_id", using: :btree
@@ -139,8 +135,8 @@ ActiveRecord::Schema.define(version: 20160907123042) do
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.string   "full_name",              limit: 255
-    t.string   "username"
     t.string   "profile_image_id"
+    t.string   "username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -153,7 +149,6 @@ ActiveRecord::Schema.define(version: 20160907123042) do
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "blogs"
-  add_foreign_key "posts", "posts"
   add_foreign_key "posts", "users"
   add_foreign_key "subscriptions", "blogs"
   add_foreign_key "subscriptions", "users"

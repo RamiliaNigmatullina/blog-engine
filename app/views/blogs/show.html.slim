@@ -1,5 +1,5 @@
 .row
-  .medium-8.columns
+  .medium-9.columns
     h2
       = blog.name
     h5.italic
@@ -9,7 +9,7 @@
     .paginator
       = paginate(posts)
 
-  .medium-4.columns
+  .medium-3.columns
     h4.margin-bottom-20
       ' Author:
       = link_to blog.user.username, profile_path(blog.user)

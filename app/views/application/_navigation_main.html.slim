@@ -1,7 +1,7 @@
 ul.left
   = active_link_to "Blogs", blogs_path, active: :exclusive, wrap_tag: :li
   - if user_signed_in?
-    = active_link_to "My feed", root_path, active: :exclusive, wrap_tag: :li
+    = active_link_to "My feed", my_feeds_path, active: :exclusive, wrap_tag: :li
     - if current_user.blogs.empty?
       = active_link_to "New blog", new_users_blog_path, active: :exclusive, wrap_tag: :li
     - else

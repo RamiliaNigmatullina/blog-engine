@@ -1,0 +1,31 @@
+.row
+  .medium-8.columns
+    h2.text-center
+      = title("Posts")
+
+    - if user_signed_in?
+      - if posts.present?
+        = render posts
+      - else
+        h5 There are no posts
+
+    .paginator
+      = paginate(posts)
+
+  .medium-3.medium-offset-1.columns
+    - if user_signed_in? && (current_user.subscribed_blogs.exists? || current_user.blogs.exists?)
+      h3 Dashboard
+      - if current_user.blogs.exists?
+        h4 = title("My blogs")
+        ul
+          - current_user.blogs.each do |blog|
+            li
+              = link_to blog.name, my_feeds_path(blog_id: blog.id)
+
+      - if current_user.subscribed_blogs.exists?
+        h4 = title("My subscriptions")
+        = link_to "All posts", my_feeds_path
+        ul
+          - current_user.subscribed_blogs.each do |blog|
+            li
+              = link_to blog.name, my_feeds_path(blog_id: blog.id)

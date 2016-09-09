@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :subscriptions, only: %i(create destroy)
 
   resources :profiles, only: %i(show)
+  resources :my_feeds, only: %i(index)
   resources :posts, only: %i(index show)
   resources :blogs, only: %i(index show)
 

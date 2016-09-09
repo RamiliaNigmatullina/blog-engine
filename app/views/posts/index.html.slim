@@ -1,39 +1,14 @@
 .row
   .medium-8.columns
     h2.text-center
-      = title("Posts")
+      = title("Posts with tag '#{params[:q]}'")
 
-    - if params[:q]
-      - if posts
-        = render posts
-      - else
-        | There are no posts with tag "
-        = params[:q]
-        | "
-
-    - elsif user_signed_in?
-      - if posts.present?
-        = render posts
-      - else
-        h5 There are no posts
+    - if posts
+      = render posts
+    - else
+      | There are no posts with tag "
+      = params[:q]
+      | "
 
     .paginator
       = paginate(posts)
-
-  .medium-3.medium-offset-1.columns
-    - if user_signed_in? && (current_user.subscribed_blogs.exists? || current_user.blogs.exists?)
-      h3 Dashboard
-      - if current_user.blogs.exists?
-        h4 = title("My blogs")
-        ul
-          - current_user.blogs.each do |blog|
-            li
-              = link_to blog.name, posts_path(blog_id: blog.id)
-
-      - if current_user.subscribed_blogs.exists?
-        h4 = title("My subscriptions")
-        = link_to "All posts", posts_path
-        ul
-          - current_user.subscribed_blogs.each do |blog|
-            li
-              = link_to blog.name, posts_path(blog_id: blog.id)

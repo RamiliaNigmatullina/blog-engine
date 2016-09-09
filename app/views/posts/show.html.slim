@@ -5,7 +5,7 @@
       ' Blog:
       = link_to post.blog.name, post.blog
     = post.body.html_safe
-    - if post.tags.present?
+    - if post.tags.exists?
       .italic
         ' Tags:
         = raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(", ")

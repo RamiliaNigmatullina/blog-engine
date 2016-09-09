@@ -9,7 +9,7 @@
 
       h3 Popular categories
       - categories.each do |category|
-        - if category.blogs.present?
+        - if category.blogs.exists?
           .category
             h4
               a href="#" = category.name

@@ -14,7 +14,7 @@
         ' Email:
         = user.email
       br
-      - if user.blogs.present?
+      - if user.blogs.exists?
         = user.full_name
         ' 's blogs:
         = raw user.blogs.map { |blog| link_to blog.name, blog }.join(", ")
@@ -22,6 +22,6 @@
         ' Posts number:
         = user.posts_number
       br
-      - if user.subscribed_blogs.present?
+      - if user.subscribed_blogs.exists?
         ' Reading:
         = raw user.subscribed_blogs.map { |blog| link_to blog.name, blog }.join(", ")

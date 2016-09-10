@@ -4,7 +4,7 @@
       = title("Posts")
 
     - if user_signed_in?
-      - if posts.exists?
+      - if posts.present?
         = render posts
       - else
         h5 There are no posts

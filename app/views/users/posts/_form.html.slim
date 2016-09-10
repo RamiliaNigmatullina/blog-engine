@@ -4,7 +4,7 @@
       = f.label "Blog"
       = f.collection_select(:blog_id, current_user.blogs, :id, :name)
       = f.input :title, autofocus: true
-      = f.input :tag_list
+      = f.input :tag_list, label: "Tags (separated by commas)"
       = f.cktext_area :body, cols: 40, ckeditor: { uiColor: "#e6e6e6", toolbar: "mini" }
 
     .form-actions

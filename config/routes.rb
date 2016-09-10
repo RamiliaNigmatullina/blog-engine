@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   authenticated :user do
-    root to: "posts#index", as: "authenticated_root"
+    root to: "my_feeds#index", as: "authenticated_root"
   end
 
   root to: "blogs#index"

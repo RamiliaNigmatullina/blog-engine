@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :tag do
-    name "animals"
+    name { |n| "tag #{n}" }
   end
 end

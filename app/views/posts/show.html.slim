@@ -14,7 +14,7 @@
     = render "likes/form"
 
     .form-actions
-      - if policy(post.blog).manage?
+      - if policy(post).manage?
         = link_to(edit_users_post_path(post), class: "btn") do
           i.fi-pencil
           ' Edit

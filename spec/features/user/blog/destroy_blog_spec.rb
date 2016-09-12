@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Delete Blog" do
+feature "Destroy Blog" do
   let!(:blog) { create :blog, user: current_user }
   let!(:another_blog) { create :blog }
 

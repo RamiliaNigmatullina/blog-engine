@@ -27,7 +27,7 @@ module Users
       post.tags.each(&:destroy)
       post.destroy
 
-      respond_with post
+      respond_with(post, location: blog_path(post.blog))
     end
 
     private

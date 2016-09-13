@@ -1,7 +1,9 @@
 require "rails_helper"
 
 feature "Create Comment" do
-  let!(:post) { create(:post) }
+  let(:user) { create :user }
+  let!(:post) { create :post, user: user }
+  let(:mail) { described_class.instructions(user).deliver_later }
 
   include_context "current user signed in"
 
@@ -13,6 +15,9 @@ feature "Create Comment" do
     fill_in "comment_body", with: "Comment 1"
     click_button "submit"
 
+    open_email(post.user.email)
+
+    expect(current_email).to have_body_text("#{current_user.full_name} commented your post '#{post.title}'")
     expect(page).to have_content("Comment 1")
   end
 end

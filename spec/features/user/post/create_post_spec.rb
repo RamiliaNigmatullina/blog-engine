@@ -5,6 +5,8 @@ feature "Create Post" do
   let!(:tag_one) { create :tag, name: "usa" }
   let!(:tag_two) { create :tag, name: "work" }
   let!(:tag_three) { create :tag, name: "travel" }
+  let!(:user) { create :user }
+  let!(:subscription) { create :subscription, user: user, blog: blog}
 
   include_context "current user signed in"
 
@@ -19,6 +21,9 @@ feature "Create Post" do
 
     click_button "Create Post"
 
+    open_email(user.email)
+
+    expect(current_email).to have_body_text(title)
     expect(page).to have_content("Post was successfully created.")
   end
 
@@ -30,6 +35,9 @@ feature "Create Post" do
 
     click_button "Create Post"
 
+    open_email(user.email)
+
+    expect(current_email).to have_body_text(title)
     expect(page).to have_content("Post was successfully created.")
   end
 end

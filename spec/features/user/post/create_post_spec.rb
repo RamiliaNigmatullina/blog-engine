@@ -6,7 +6,7 @@ feature "Create Post" do
   let!(:tag_two) { create :tag, name: "work" }
   let!(:tag_three) { create :tag, name: "travel" }
   let!(:user) { create :user }
-  let!(:subscription) { create :subscription, user: user, blog: blog}
+  let!(:subscription) { create :subscription, user: user, blog: blog }
 
   include_context "current user signed in"
 

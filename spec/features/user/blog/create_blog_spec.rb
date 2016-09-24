@@ -12,7 +12,10 @@ feature "Create Blog" do
 
   scenario "User creats blog" do
     fill_form(:blog, blog_attributes)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5fb4b77... code fixing
     click_button "Create Blog"
 
     expect(page).to have_content("Blog was successfully created.")

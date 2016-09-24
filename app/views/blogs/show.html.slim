@@ -22,7 +22,7 @@
           - if subscription
             = link_to "Unsubcsribe", subscription, method: "delete"
           - else
-            = link_to "Subscribe", subscriptions_path(blog_id: blog.id), method: "post"
+            = link_to "Subscribe", subscriptions_path(blog_id: blog), method: "post"
 
       = blog.subscribers_number
       br

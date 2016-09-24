@@ -20,7 +20,7 @@
         ul
           - current_user.blogs.each do |blog|
             li
-              = link_to blog.name, my_feeds_path(blog_id: blog.id)
+              = link_to blog.name, my_feeds_path(blog: blog)
 
       - if current_user.subscribed_blogs.exists?
         h4 = title("My subscriptions")
@@ -28,4 +28,4 @@
         ul
           - current_user.subscribed_blogs.each do |blog|
             li
-              = link_to blog.name, my_feeds_path(blog_id: blog.id)
+              = link_to blog.name, my_feeds_path(blog: blog)

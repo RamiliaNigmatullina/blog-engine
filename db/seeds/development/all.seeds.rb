@@ -28,8 +28,8 @@ FactoryGirl.create(:category, name: "Tutorials & Howtos")
 FactoryGirl.create(:category, name: "Travel")
 
 FactoryGirl.create(:user, email: "user@example.com", username: "user")
-FactoryGirl.create(:user, full_name: "Brian Wilson", email: "brian@gmail.com", username: "brian")
-FactoryGirl.create(:user, full_name: "Peter Moore", email: "peter@gmail.com", username: "peter")
+FactoryGirl.create(:user, email: "brian@gmail.com", username: "brian")
+FactoryGirl.create(:user, email: "peter@gmail.com", username: "peter")
 FactoryGirl.create(:user, full_name: "Ramilia Nigmatullina", email: "ramilia@gmail.com", username: "ramilia")
 
 
@@ -61,17 +61,4 @@ FactoryGirl.create(:post, title: "USA", blog_id: 2, user_id: 3)
 
 FactoryGirl.create(:comment, user_id: 2, post_id: 4)
 FactoryGirl.create(:comment, user_id: 2, post_id: 5)
-FactoryGirl.create(:comment, user_id: 2, post_id: 5)
 FactoryGirl.create(:comment, user_id: 3, post_id: 1)
-FactoryGirl.create(:comment, user_id: 3, post_id: 1)
-FactoryGirl.create(:comment, user_id: 3, post_id: 2)
-FactoryGirl.create(:comment, user_id: 3, post_id: 4)
-
-# FactoryGirl.create(:tag, name: "harrypotter", post_id: 1)
-# FactoryGirl.create(:tag, name: "harrypotter", post_id: 2)
-# FactoryGirl.create(:tag, name: "harrypotter", post_id: 3)
-# FactoryGirl.create(:tag, name: "movie", post_id: 1)
-# FactoryGirl.create(:tag, name: "movie", post_id: 2)
-# FactoryGirl.create(:tag, name: "movie", post_id: 3)
-# FactoryGirl.create(:tag, name: "usa", post_id: 4)
-# FactoryGirl.create(:tag, name: "travel", post_id: 5)

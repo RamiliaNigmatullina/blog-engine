@@ -1,8 +1,0 @@
-Hello, <%= @user.full_name%>
-
-User <%= @post.user.full_name %> posted new article:
-
-<%= @post.title %>
-<%= truncate(@post.body, length: 300, separator: " ") %>
-
-Read it now <%= link_to(@post.title, post_path(@post)) %>

@@ -12,7 +12,6 @@ feature "Create Blog" do
 
   scenario "User creats blog" do
     fill_form(:blog, blog_attributes)
-    select "Technology", from: "blog_category_id"
     click_button "Create Blog"
 
     expect(page).to have_content("Blog was successfully created.")

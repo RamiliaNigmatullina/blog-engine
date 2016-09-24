@@ -21,7 +21,7 @@ class BlogsController < ApplicationController
   end
 
   def fetch_subscription
-    current_user.subscriptions.where(blog_id: blog.id).first if current_user
+    current_user.subscriptions.where(blog: blog).first if current_user
   end
 
   def fetch_categories

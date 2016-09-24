@@ -32,16 +32,16 @@ class PostsController < ApplicationController
   def fetch_posts
     if params[:q]
       Post.includes(:blog).tagged_with(params[:q]).page(params[:page]).per(10)
-    elsif params[:blog_id]
+    elsif params[:blog]
       Post.includes(:blog).joins(:blog)
-          .where(blogs: { id: params[:blog_id] }).order(created_at: :desc).page(params[:page]).per(10)
+          .where(blogs: { id: params[:blog] }).order(created_at: :desc).page(params[:page]).per(10)
     else
       Post.includes(:blog).joins(blog: :subscriptions)
-          .where(subscriptions: { user_id: current_user.id }).order(created_at: :desc).page(params[:page]).per(10)
+          .where(subscriptions: { user: current_user }).order(created_at: :desc).page(params[:page]).per(10)
     end
   end
 
   def fetch_like
-    current_user.likes.where(post_id: post.id).first if current_user
+    current_user.likes.where(post: post).first if current_user
   end
 end

@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   validates :body, presence: true
 
   has_many :comments, dependent: :destroy
-  has_many :likes
+  has_many :likes, dependent: :destroy
 
   belongs_to :blog
   belongs_to :user

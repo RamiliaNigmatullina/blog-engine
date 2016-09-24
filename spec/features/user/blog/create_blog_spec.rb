@@ -1,6 +1,7 @@
 require "rails_helper"
 
 feature "Create Blog" do
+  let!(:category) { create :category }
   let(:blog_attributes) { attributes_for(:blog).slice(:name, :description) }
 
   include_context "current user signed in"
@@ -11,10 +12,7 @@ feature "Create Blog" do
 
   scenario "User creats blog" do
     fill_form(:blog, blog_attributes)
-<<<<<<< HEAD
 
-=======
->>>>>>> 5fb4b77... code fixing
     click_button "Create Blog"
 
     expect(page).to have_content("Blog was successfully created.")

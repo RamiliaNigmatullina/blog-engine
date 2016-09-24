@@ -2,9 +2,9 @@ class UserMailer < ApplicationMailer
   default from: ENV.fetch("MAILER_SENDER_ADDRESS")
 
   def new_post(post)
-    users_id = Subscription.where(blog: post.blog).pluck(:user_id)
+    users_ids = Subscription.where(blog: post.blog).pluck(:user_id)
     users_email = []
-    users_id.each do |user_id|
+    users_ids.each do |user_id|
       user = User.find_by id: user_id
       users_email << user.email
     end

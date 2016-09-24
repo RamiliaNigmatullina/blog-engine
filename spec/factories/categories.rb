@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :category do
-    name "Technology"
+    name { generate(:category_name) }
   end
 end

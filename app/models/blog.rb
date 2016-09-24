@@ -1,12 +1,11 @@
 class Blog < ActiveRecord::Base
-  validates :name, uniqueness: true
   validates :name, presence: true
+  validates :name, uniqueness: true
 
   belongs_to :user
-
-  has_many :subscriptions
-  has_many :users, through: :subscriptions
-  has_many :posts
-
   belongs_to :category
+
+  has_many :posts, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
+  has_many :users, through: :subscriptions
 end

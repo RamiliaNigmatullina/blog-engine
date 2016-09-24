@@ -7,11 +7,11 @@ class User < ActiveRecord::Base
 
   has_many :comments, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
-  has_many :subscribed_blogs, through: :subscriptions, source: :blog
-  has_many :blogs
-  has_many :likes
+  has_many :subscribed_blogs, through: :subscriptions, source: :blog, dependent: :destroy
+  has_many :blogs, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   attachment :profile_image
 end

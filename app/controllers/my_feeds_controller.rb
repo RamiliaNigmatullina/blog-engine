@@ -9,12 +9,7 @@ class MyFeedsController < ApplicationController
   private
 
   def fetch_posts
-    if params[:blog_id]
-      Post.includes(:blog).joins(:blog).where(blogs: { id: params[:blog_id] })
-          .order(created_at: :desc).page(params[:page]).per(10)
-    else
-      Post.includes(:blog).joins(blog: :subscriptions).where(subscriptions: { user_id: current_user.id })
-          .order(created_at: :desc).page(params[:page]).per(10)
-    end
+    posts = Post.where(blog: params[:blog] || current_user.subscribed_blogs.pluck(:blog)).order(created_at: :desc)
+    posts.includes(:blog).page(params[:page]).per(10)
   end
 end

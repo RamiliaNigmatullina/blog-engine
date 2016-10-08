@@ -1,5 +1,5 @@
 $(document).ready(() ->
   $(".category").click(() ->
-    $(this).children().children().show(500)
+    $(this).find("li").toggle(300)
   )
 )

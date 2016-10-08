@@ -12,7 +12,7 @@
         - if category.blogs.exists?
           .category
             h4
-              a href="#" = category.name
+              = category.name
             ul
               - category.blogs.each do |blog|
                 li style="display: none"

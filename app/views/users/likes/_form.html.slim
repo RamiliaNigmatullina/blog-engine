@@ -1,0 +1,8 @@
+=> post.likes
+- if user_signed_in?
+  - if like
+    = link_to(users_post_like_path(post, like), method: "delete") do
+      | Unlike
+  - else
+    = link_to(users_post_likes_path(post), method: "post") do
+      | Like

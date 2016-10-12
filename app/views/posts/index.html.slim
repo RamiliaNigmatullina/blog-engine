@@ -3,12 +3,12 @@
     h2.text-center
       = title("Posts with tag '#{params[:q]}'")
 
-    - if posts
-      = render posts
-    - else
+    - if posts.empty?
       | There are no posts with tag "
       = params[:q]
       | "
+    - else
+      = render posts
 
     .paginator
       = paginate(posts)

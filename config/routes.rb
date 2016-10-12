@@ -9,11 +9,11 @@ Rails.application.routes.draw do
   resources :subscriptions, only: %i(create destroy)
 
   resources :profiles, only: %i(show)
-  resources :my_feeds, only: %i(index)
   resources :posts, only: %i(index show)
   resources :blogs, only: %i(index show)
 
   namespace :users do
+    resources :my_feeds, only: %i(index)
     resources :blogs, only: %i(new create edit update destroy)
     resources :posts, only: %i(new create edit update destroy) do
       resources :comments, only: %i(create destroy)
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   authenticated :user do
-    root to: "my_feeds#index", as: "authenticated_root"
+    root to: "users/my_feeds#index", as: "authenticated_root"
   end
 
   root to: "blogs#index"

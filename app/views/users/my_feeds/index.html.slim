@@ -5,7 +5,7 @@
 
     - if user_signed_in?
       - if posts.present?
-        = render posts
+        = render partial: "posts/post", collection: posts
       - else
         h5 There are no posts
 
@@ -20,12 +20,12 @@
         ul
           - current_user.blogs.each do |blog|
             li
-              = link_to blog.name, my_feeds_path(blog: blog)
+              = link_to blog.name, users_my_feeds_path(blog: blog)
 
       - if current_user.subscribed_blogs.exists?
         h4 = title("My subscriptions")
-        = link_to "All posts", my_feeds_path
+        = link_to "All posts", users_my_feeds_path
         ul
           - current_user.subscribed_blogs.each do |blog|
             li
-              = link_to blog.name, my_feeds_path(blog: blog)
+              = link_to blog.name, users_my_feeds_path(blog: blog)

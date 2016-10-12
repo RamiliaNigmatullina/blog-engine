@@ -6,11 +6,12 @@
       = blog.description
     hr
     = render posts
+
     .paginator
       = paginate(posts)
 
   .medium-3.columns
-    h4.margin-bottom-20
+    h4.space-under-text
       ' Author:
       = link_to blog.user.username, profile_path(blog.user)
 
@@ -18,7 +19,7 @@
       = blog.category
       br
       - if user_signed_in? && !policy(blog).manage?
-        .margin-bottom-20
+        .space-under-text
           - if subscription
             = link_to "Unsubcsribe", subscription, method: "delete"
           - else

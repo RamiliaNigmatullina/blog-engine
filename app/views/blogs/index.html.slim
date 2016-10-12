@@ -11,7 +11,7 @@
       - categories.each do |category|
         - if category.blogs.exists?
           .category
-            h4
+            h4.link-color
               = category.name
             ul
               - category.blogs.each do |blog|

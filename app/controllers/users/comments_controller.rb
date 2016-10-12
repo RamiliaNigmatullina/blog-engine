@@ -3,11 +3,10 @@ module Users
     before_action :authenticate_user!
 
     expose :post
-    expose_decorated :comment, attributes: :comment_params, from: :post
+    expose_decorated :comment, attributes: :comment_params
 
     def create
-      comment.user = current_user
-      comment.post_id = post.id
+      comment.update(user: current_user, post: post)
       comment.save
 
       UserMailer.new_comment(comment).deliver_later

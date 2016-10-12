@@ -2,7 +2,7 @@ module Users
   class PostsController < ApplicationController
     before_action :authenticate_user!
 
-    expose_decorated(:post, attributes: :post_params)
+    expose_decorated :post, attributes: :post_params
 
     def new
       redirect_to new_users_blog_path if current_user.blogs.empty?
@@ -27,7 +27,7 @@ module Users
       post.tags.each(&:destroy)
       post.destroy
 
-      respond_with(post, location: blog_path(post.blog))
+      respond_with post, location: blog_path(post.blog)
     end
 
     private

@@ -1,4 +1,5 @@
 $white: #fff;
+$blue: #0e799e;
 
 .text-center {
   text-align: center;
@@ -16,16 +17,27 @@ $white: #fff;
   width: 100%;
 }
 
-.margin-right-20 {
-  margin-right: 20px;
-}
-
 .italic {
   margin-bottom: 5px;
 
   font-style: italic;
 }
 
+.small-space-above-text {
+  margin-top: 10px;
+}
+
+.medium-space-above-text {
+  margin-top: 30px;
+}
+
+.space-under-text {
+  margin-bottom: 20px;
+}
+
+.link-color {
+  color: $blue;
+}
 
 h3 {
   margin-top: 30px;
@@ -41,16 +53,4 @@ h2+h3 {
 
 h3+h4 {
   margin-top: 5px;
-}
-
-.margin-top-10 {
-  margin-top: 10px;
-}
-
-.margin-top-30 {
-  margin-top: 30px;
-}
-
-.margin-bottom-20 {
-  margin-bottom: 20px;
 }

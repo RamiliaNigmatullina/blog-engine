@@ -2,7 +2,7 @@ module Users
   class BlogsController < ApplicationController
     before_action :authenticate_user!
 
-    expose_decorated(:blog, attributes: :blog_params)
+    expose_decorated :blog, attributes: :blog_params
 
     def new
     end

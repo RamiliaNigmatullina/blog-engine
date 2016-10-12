@@ -30,15 +30,7 @@ class PostsController < ApplicationController
   end
 
   def fetch_posts
-    if params[:q]
-      Post.includes(:blog).tagged_with(params[:q]).page(params[:page]).per(10)
-    elsif params[:blog]
-      Post.includes(:blog).joins(:blog)
-          .where(blogs: { id: params[:blog] }).order(created_at: :desc).page(params[:page]).per(10)
-    else
-      Post.includes(:blog).joins(blog: :subscriptions)
-          .where(subscriptions: { user: current_user }).order(created_at: :desc).page(params[:page]).per(10)
-    end
+    Post.includes(:blog).tagged_with(params[:q]).page(params[:page]).per(10)
   end
 
   def fetch_like

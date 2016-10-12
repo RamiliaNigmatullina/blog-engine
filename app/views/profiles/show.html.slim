@@ -4,10 +4,7 @@
     = image_tag attachment_url(user, :profile_image, :fill, 300, 300, fallback: "/images/avatar/default_avatar.png")
   .medium-8.columns
     h2
-      => user.full_name
-      | (
-      = user.username
-      | )
+      = user.full_name_with_username
 
     h5
       .italic
@@ -15,13 +12,11 @@
         = user.email
       br
       - if user.blogs.exists?
-        = user.full_name
-        ' 's blogs:
+        = user.user_blogs
         = raw user.blogs.map { |blog| link_to blog.name, blog }.join(", ")
         br
-        ' Posts number:
         = user.posts_number
       br
       - if user.subscribed_blogs.exists?
-        ' Reading:
+        ' Subscriptions:
         = raw user.subscribed_blogs.map { |blog| link_to blog.name, blog }.join(", ")

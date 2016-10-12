@@ -8,6 +8,7 @@
         td
           strong
             = comment.commenter
+        td
       tr
         td
           = comment.body
@@ -17,7 +18,7 @@
 
 
 - if user_signed_in?
-  h4.margin-top-30 Add comment
+  h4.medium-space-above-text Add comment
   = render "users/comments/form"
 - else
   ' Please

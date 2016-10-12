@@ -3,10 +3,9 @@ class SubscriptionsController < ApplicationController
   expose :subscription
 
   def create
-    subscription.user = current_user
-    subscription.blog = blog
-
+    subscription.update(user: current_user, blog: blog)
     subscription.save
+
     redirect_to blog
   end
 

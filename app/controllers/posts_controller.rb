@@ -3,7 +3,6 @@ class PostsController < ApplicationController
 
   expose_decorated(:post) { fetch_post }
   expose_decorated(:posts) { fetch_posts }
-
   expose_decorated(:comments) { post_comments }
 
   expose(:subscriptions) { current_user_subscriptions }

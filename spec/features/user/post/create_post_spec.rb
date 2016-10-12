@@ -2,11 +2,9 @@ require "rails_helper"
 
 feature "Create Post" do
   let!(:blog) { create :blog, user: current_user, name: "Frugal Traveler" }
-  let!(:tag_one) { create :tag, name: "usa" }
-  let!(:tag_two) { create :tag, name: "work" }
-  let!(:tag_three) { create :tag, name: "travel" }
   let!(:user) { create :user }
   let!(:subscription) { create :subscription, user: user, blog: blog }
+  let!(:tag) { create :tag, name: "usa" }
 
   include_context "current user signed in"
 
@@ -30,7 +28,7 @@ feature "Create Post" do
   scenario "User creats post with tags" do
     select "Frugal Traveler", from: "post_blog_id"
     fill_in "post_title", with: title
-    fill_in "post_tag_list", with: "#{tag_one.name}, #{tag_two.name}, #{tag_three.name}"
+    fill_in "post_tag_list", with: tag.name
     fill_in "post_body", with: body
 
     click_button "Create Post"

@@ -1,6 +1,4 @@
 class PostsController < ApplicationController
-  respond_to :html
-
   expose_decorated(:post) { fetch_post }
   expose_decorated(:posts) { fetch_posts }
   expose_decorated(:comments) { post_comments }

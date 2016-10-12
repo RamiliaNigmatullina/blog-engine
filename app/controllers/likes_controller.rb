@@ -1,6 +1,4 @@
 class LikesController < ApplicationController
-  respond_to :html
-
   expose(:like)
   expose(:post)
 

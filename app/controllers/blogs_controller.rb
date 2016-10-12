@@ -1,6 +1,4 @@
 class BlogsController < ApplicationController
-  respond_to :html
-
   expose_decorated :blog
   expose_decorated :blogs
 

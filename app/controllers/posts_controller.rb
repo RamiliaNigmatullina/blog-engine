@@ -31,6 +31,6 @@ class PostsController < ApplicationController
   end
 
   def fetch_like
-    current_user.likes.where(post: post).first if current_user
+    current_user.likes.find_by post: post if current_user
   end
 end

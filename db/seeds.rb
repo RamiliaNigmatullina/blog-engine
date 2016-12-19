@@ -1,3 +1,5 @@
+
+
 Category.create(name: "Technology")
 Category.create(name: "Business & Finance")
 Category.create(name: "News & Politics")

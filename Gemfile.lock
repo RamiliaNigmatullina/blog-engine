@@ -41,6 +41,8 @@ GEM
     acts-as-taggable-on (4.0.0)
       activerecord (>= 4.0)
     addressable (2.4.0)
+    airbrussh (1.1.1)
+      sshkit (>= 1.6.1, != 1.7.0)
     arel (6.0.3)
     ast (2.3.0)
     autoprefixer-rails (6.3.6)
@@ -66,6 +68,13 @@ GEM
     byebug (3.1.2)
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
+    capistrano (3.7.1)
+      airbrussh (>= 1.0.0)
+      capistrano-harrow
+      i18n
+      rake (>= 10.0.0)
+      sshkit (>= 1.9.0)
+    capistrano-harrow (0.5.3)
     capybara (2.7.1)
       addressable
       mime-types (>= 1.16)
@@ -203,6 +212,9 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (3.2.0)
     netrc (0.11.0)
     newrelic_rpm (3.13.0.299)
     nokogiri (1.6.8)
@@ -376,6 +388,9 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sshkit (1.11.5)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
     stackprof (0.2.7)
     sysexits (1.2.0)
     temple (0.7.7)
@@ -420,6 +435,7 @@ DEPENDENCIES
   bullet
   bundler-audit
   byebug
+  capistrano (~> 3.7)
   capybara
   capybara-webkit
   ckeditor

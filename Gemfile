@@ -86,6 +86,7 @@ end
 
 group :development do
   gem "bullet"
+  gem "capistrano", "~> 3.7"
   gem "foreman", require: false
   gem "letter_opener"
   gem "quiet_assets"

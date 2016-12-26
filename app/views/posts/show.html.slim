@@ -11,14 +11,12 @@
         = raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(", ")
     .italic
       = post.created_at
-    .like-post, data: { like: like }
+
+    .like-post data-post-id=post.id data-likes-count=post.likes_count
+      span.post-likes-count = post.likes_count
       - if user_signed_in?
-        = link_to "Like", likes_path(post_id: post)
-        = link_to "Unlike", like
-        / - unless like
-        /   = link_to "Like", likes_path(post_id: post)
-        / - else
-        /   = link_to "Unlike", like
+        = link_to post_like_path(post), remote: true do
+          = like ? "Unlike" : "Like"
 
     .form-actions
       - if policy(post).manage?

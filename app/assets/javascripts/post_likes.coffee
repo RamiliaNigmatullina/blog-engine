@@ -1,4 +1,4 @@
-class PostLikes
+class PostLike
   constructor: (el) ->
     @like_button = $(el).find("a").first()
     @unlike_button = $(el).find("a").last()
@@ -9,7 +9,7 @@ class PostLikes
     @like_button.on "click", @_likePost
     @unlike_button.on "click", @_unlikePost
 
-  _likePost: (event)=>
+  _likePost: (event) =>
     event.preventDefault()
 
     url = @like_button.attr("href")
@@ -36,4 +36,4 @@ class PostLikes
     )
 
 $ ->
-  new PostLikes(el) for el in $(".like-post")
+  new PostLike(el) for el in $(".like-post")

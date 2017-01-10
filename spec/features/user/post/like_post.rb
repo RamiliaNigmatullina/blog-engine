@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "Like Post" do
-  let!(:post) { create :post }
+  let(:post) { create :post }
   include_context "current user signed in"
 
   background do
@@ -11,6 +11,7 @@ feature "Like Post" do
   scenario "User likes post" do
     click_link "Like"
 
-    expect(page).to have_content("Unlike")
+    expect(page).not_to have_content("Like")
+    expect(page).to have_content("Likes: 1")
   end
 end

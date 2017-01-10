@@ -1,39 +1,29 @@
 class PostLike
   constructor: (el) ->
-    @like_button = $(el).find("a").first()
-    @unlike_button = $(el).find("a").last()
-
+    @likeButton = $(el).find("a").first()
+    @likesNumber = $(el).find("span").first()
     @_bindEvents()
 
   _bindEvents: ->
-    @like_button.on "click", @_likePost
-    @unlike_button.on "click", @_unlikePost
+    @likeButton.on "click", @_likePost
 
   _likePost: (event) =>
     event.preventDefault()
 
-    url = @like_button.attr("href")
+    url = @likeButton.attr("href")
 
     $.ajax(
       url: url
       method: "post"
       dataType: "json"
-      @like_button.hide()
-      @unlike_button.show()
+      @_hideButton()
+      @_incremLikesNumber()
     )
+  _hideButton: =>
+    @likeButton.hide()
 
-  _unlikePost: (event)=>
-    event.preventDefault()
-
-    url = @unlike_button.attr("href")
-
-    $.ajax(
-      url: url
-      method: "delete"
-      dataType: "json"
-      @unlike_button.hide()
-      @like_button.show()
-    )
+  _incremLikesNumber: =>
+    @likesNumber.text(parseInt(@likesNumber.text()) + 1)
 
 $ ->
   new PostLike(el) for el in $(".like-post")

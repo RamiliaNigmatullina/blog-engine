@@ -3,4 +3,3 @@ class LikePolicy < ApplicationPolicy
     user.present?
   end
 end
-

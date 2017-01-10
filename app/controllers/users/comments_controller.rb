@@ -7,7 +7,6 @@ module Users
 
     def create
       comment.update(user: current_user, post: post)
-      comment.save
 
       UserMailer.new_comment(comment).deliver_later
 

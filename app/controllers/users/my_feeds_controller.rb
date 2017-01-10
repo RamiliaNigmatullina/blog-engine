@@ -4,8 +4,7 @@ module Users
 
     expose_decorated(:posts) { fetch_posts }
 
-    def index
-    end
+    def index; end
 
     private
 

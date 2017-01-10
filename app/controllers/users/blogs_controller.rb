@@ -24,8 +24,6 @@ module Users
     end
 
     def destroy
-      blog.subscriptions.each(&:destroy)
-      blog.posts.each(&:destroy)
       blog.destroy
 
       respond_with blog

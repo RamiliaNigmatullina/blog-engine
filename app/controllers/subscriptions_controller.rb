@@ -4,7 +4,6 @@ class SubscriptionsController < ApplicationController
 
   def create
     subscription.update(user: current_user, blog: blog)
-    subscription.save
 
     redirect_to blog
   end

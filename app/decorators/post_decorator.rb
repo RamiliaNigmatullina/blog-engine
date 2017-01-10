@@ -16,4 +16,8 @@ class PostDecorator < ApplicationDecorator
   def likes
     "Likes: #{object.likes.count}"
   end
+
+  def likes_count
+    object.likes.count
+  end
 end

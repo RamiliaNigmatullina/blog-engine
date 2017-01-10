@@ -4,7 +4,6 @@ class LikesController < ApplicationController
 
   def create
     like.update(user: current_user, post: post)
-    like.save
 
     redirect_to post
   end

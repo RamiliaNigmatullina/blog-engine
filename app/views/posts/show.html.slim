@@ -11,7 +11,14 @@
         = raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(", ")
     .italic
       = post.created_at
-    = render "likes/form"
+
+    .like-post
+      .likes-count
+        ' Likes:
+        span = post.likes_count
+      .like-button
+        - if user_signed_in? && !like
+          = link_to "Like", post_like_path(post)
 
     .form-actions
       - if policy(post).manage?

@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => "/ckeditor"
   devise_for :users, controllers: { registrations: "users/registrations" }
 
-  resources :likes
   resources :comments
   resources :subscriptions, only: %i(create destroy)
 
@@ -18,6 +17,10 @@ Rails.application.routes.draw do
     resources :posts, only: %i(new create edit update destroy) do
       resources :comments, only: %i(create destroy)
     end
+  end
+
+  resources :posts do
+    resource :like, only: %i(create destroy)
   end
 
   authenticated :user do

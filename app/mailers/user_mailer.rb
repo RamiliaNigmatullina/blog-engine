@@ -6,7 +6,7 @@ class UserMailer < ApplicationMailer
     mail(to: users_email,
          body: post.body,
          content_type: "text/html",
-         subject: "New post in #{post.user.full_name}'s blog")
+         subject: "New post in #{post.user.full_name}'s blog") if users_email.any?
   end
 
   def new_comment(comment)

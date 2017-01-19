@@ -1,9 +1,9 @@
 require "rails_helper"
 
 feature "Destroy Post" do
-  let!(:blog) { create :blog, user: current_user }
-  let!(:post) { create :post, user: current_user, blog: blog }
-  let!(:another_post) { create :post }
+  let(:blog) { create :blog, user: current_user }
+  let(:post) { create :post, user: current_user, blog: blog }
+  let(:another_post) { create :post }
 
   include_context "current user signed in"
 

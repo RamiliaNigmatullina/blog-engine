@@ -1,9 +1,9 @@
 require "rails_helper"
 
 feature "Subscribe blog" do
-  let!(:blog) { create :blog }
-  let!(:current_user_blog) { create :blog, user: current_user }
-  let!(:subscribed_blog) { create :blog }
+  let(:blog) { create :blog }
+  let(:current_user_blog) { create :blog, user: current_user }
+  let(:subscribed_blog) { create :blog }
   let!(:subscription) { create :subscription, blog: subscribed_blog, user: current_user }
 
   include_context "current user signed in"

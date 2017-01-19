@@ -3,8 +3,8 @@ require "rails_helper"
 feature "Edit Blog" do
   include_context "current user signed in"
 
-  let!(:blog) { create :blog, user: current_user }
-  let!(:another_blog) { create :blog }
+  let(:blog) { create :blog, user: current_user }
+  let(:another_blog) { create :blog }
 
   scenario "As a user I can edit my blog" do
     visit edit_users_blog_path(blog)

@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "Create Comment" do
   let(:user) { create :user }
-  let!(:post) { create :post, user: user }
+  let(:post) { create :post, user: user }
 
   include_context "current user signed in"
 

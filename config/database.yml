@@ -6,17 +6,15 @@ defaults: &defaults
   password: postgres
   host: localhost
   timeout: 5000
-  pool: <%= [ENV.fetch("MAX_THREADS", 5), ENV.fetch("DB_POOL", 5)].max %>
+  pool: 5
 
 development:
-  database: <%= ENV.fetch("DATABASE_NAME", File.basename(Rails.root)) %>_dev
+  database: blog-engine_dev
   <<: *defaults
 
 test:
-  database: <%= ENV.fetch("DATABASE_NAME", File.basename(Rails.root)) %>_test
+  database: blog-engine_test
   <<: *defaults
 
 production: &deploy
   <<: *defaults
-
-staging: *deploy

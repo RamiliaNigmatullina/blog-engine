@@ -1,0 +1,15 @@
+defaults: &defaults
+  host: localhost
+  adapter: postgresql
+  encoding: unicode
+  min_messages: warning
+  timeout: 5000
+  pool: 5
+
+development:
+  database: blog-engine_dev
+  <<: *defaults
+
+test:
+  database: blog-engine_test
+  <<: *defaults

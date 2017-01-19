@@ -24,7 +24,6 @@ module Users
     end
 
     def destroy
-      post.tags.each(&:destroy)
       post.destroy
 
       respond_with post, location: blog_path(post.blog)

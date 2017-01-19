@@ -1,8 +1,8 @@
 require "rails_helper"
 
 feature "Destroy Blog" do
-  let!(:blog) { create :blog, user: current_user }
-  let!(:another_blog) { create :blog }
+  let(:blog) { create :blog, user: current_user }
+  let(:another_blog) { create :blog }
 
   include_context "current user signed in"
 

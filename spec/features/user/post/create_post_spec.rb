@@ -1,10 +1,10 @@
 require "rails_helper"
 
 feature "Create Post" do
-  let!(:blog) { create :blog, user: current_user, name: "Frugal Traveler" }
-  let!(:user) { create :user }
+  let(:blog) { create :blog, user: current_user, name: "Frugal Traveler" }
+  let(:user) { create :user }
   let!(:subscription) { create :subscription, user: user, blog: blog }
-  let!(:tag) { create :tag, name: "usa" }
+  let(:tag) { create :tag, name: "usa" }
 
   include_context "current user signed in"
 

@@ -1,8 +1,8 @@
 require "rails_helper"
 
 feature "Destroy Comment" do
-  let!(:first_post) { create :post }
-  let!(:second_post) { create :post }
+  let(:first_post) { create :post }
+  let(:second_post) { create :post }
   let!(:comment) { create :comment, body: "First comment.", post: first_post, user: current_user }
   let!(:another_comment) { create :comment, body: "Second comment.", post: second_post }
 

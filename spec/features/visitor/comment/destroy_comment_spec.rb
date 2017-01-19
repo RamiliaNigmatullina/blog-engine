@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "Destroy Comment" do
-  let!(:post) { create :post }
+  let(:post) { create :post }
   let!(:comment) { create :comment, body: "First comment.", post: post }
 
   scenario "As visitor I can't delete comment" do
